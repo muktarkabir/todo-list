@@ -1,0 +1,30 @@
+:root {
+  /* Light mode */
+  --bgc: light-dark(#f5f5f5, #121212);
+  --surface: light-dark(#ffffff, #1e1e1e);
+  --primary: light-dark(#6200ee, #bb86fc);
+  --secondary: light-dark(#018786, #03dac6);
+  --text-high: light-dark(#212121, #e0e0e0);
+  --text-medium: light-dark(#666666, #b3b3b3);
+  --divider: light-dark(#e0e0e0, #2c2c2c);
+
+  /* Priorities */
+  --prio-low: #4caf50;
+  --prio-med: #ffca28;
+  --prio-high: #ff5722;
+  --prio-urgent: #d32f2f;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+body{
+    background-color: var(--bgc);
+    color-scheme: dark;
+
+}
