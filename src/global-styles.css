@@ -51,27 +51,46 @@ main {
 }
 
 aside {
-  background-color: var(--surface);
   grid-area: side-bar;
   padding: 0.6rem;
 
   .top {
     width: 100%;
     height: 70px;
-    border: 2px solid purple;
     display: flex;
     align-items: center;
     gap: 6px;
     color: var(--text-medium);
+    margin-bottom: 40px;
     .picture {
       aspect-ratio: 1;
-      width: 50px;
+      width: 44px;
       border-radius: 50%;
-      background-color: var(--prio-low);
+      border: 2px solid var(--surface);
+    }
+    i {
+      color: var(--divider);
+    }
+  }
+
+  .features {
+    > div {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 1rem;
+      align-items: center;
+      color: var(--text-medium);
+      margin-bottom: 1rem;
+
+      svg {
+        width: 20px;
+        margin-left: auto;
+        fill: var(--secondary);
+      }
     }
   }
 }
 main {
-  background-color: var(--prio-med);
   grid-area: main-content;
+  background-color: var(--surface);
 }
