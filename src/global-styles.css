@@ -101,15 +101,13 @@ aside {
     }
   }
 
-  & .projects{
-    margin-top: .6rem;
+  & .projects {
+    margin-top: 0.6rem;
     max-height: 200px;
     overflow-y: auto;
   }
 
-  
-
-  & .projects::-webkit-scrollbar{
+  & .projects::-webkit-scrollbar {
     width: 2px;
   }
   & .projects::-webkit-scrollbar-thumb {
@@ -120,34 +118,41 @@ aside {
     display: grid;
     grid-template-columns: 40px 1fr;
     grid-template-rows: 40px;
-    gap: .6rem;
+    gap: 0.6rem;
     align-items: center;
     color: var(--text-medium);
     margin-bottom: 0.4rem;
 
-    svg{
-        fill: goldenrod;
-        width: 20px;
-        aspect-ratio: 1;
-        margin-left: auto;
+    svg {
+      fill: goldenrod;
+      width: 20px;
+      aspect-ratio: 1;
+      margin-left: auto;
     }
   }
 
-  .project.heading{
-    div{
-        width: 20px;
-        aspect-ratio: 1;
-        margin-left: auto;
-        svg{
-            width: 100%;
-            fill: dodgerblue;
-        }
+  .project.heading {
+    div {
+      width: 20px;
+      aspect-ratio: 1;
+      margin-left: auto;
+      svg {
+        width: 100%;
+        fill: dodgerblue;
+      }
     }
   }
 }
 main {
   grid-area: main-content;
   background-color: var(--surface);
+  display: grid;
+  place-items: center;
 
-  
+  #content{
+    background-color: var(--prio-urgent);
+    width: 80%;
+    height: 80%;
+
+  }
 }
