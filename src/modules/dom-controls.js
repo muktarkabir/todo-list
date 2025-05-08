@@ -16,14 +16,27 @@ export const domStuff = (() => {
   const featuresContainer = sidebar.querySelector("div.features");
   const projectsContainer = sidebar.querySelector(".projects");
   const mainContent = document.querySelector("main");
-  const addProjectButton = document.querySelector(".heading p");
+  const addProjectOpenButton = document.querySelector(".heading p");
   const addProjectDialog = document.querySelector("dialog.project");
+  const newProjectName = addProjectDialog.querySelector("input");
+  const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
+  const addProjectConfirmButton = addProjectDialog.querySelector(".add-project");
   
 projectsContainer.append(createProjectCard({titleText:"Personal",color:"pink"}));   
 
 
-addProjectButton.addEventListener("click",()=>{
+addProjectOpenButton.addEventListener("click",()=>{
   addProjectDialog.showModal();
 });
+addProjectCancelButton.addEventListener("click",()=>{
+  addProjectDialog.close();
+})
+
+addProjectConfirmButton.addEventListener("click",(e)=>{
+  if (newProjectName.value) {
+    e.preventDefault();
+    addProjectDialog.close();
+  }
+})
     
 })();
