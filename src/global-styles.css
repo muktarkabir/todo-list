@@ -124,22 +124,48 @@ aside {
     margin-bottom: 0.4rem;
 
     svg {
-      fill: goldenrod;
+      /* fill: goldenrod;
       width: 20px;
-      aspect-ratio: 1;
+      aspect-ratio: 1; */
       margin-left: auto;
     }
   }
 
-  .project.heading {
+  .heading {
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-rows: 40px;
+    gap: 0.4rem;
+    align-items: center;
     div {
-      width: 20px;
       aspect-ratio: 1;
-      margin-left: auto;
-      svg {
-        width: 100%;
-        fill: dodgerblue;
-      }
+     display: grid;
+     place-items: center;
+     cursor: pointer;
+     
+     p{
+      font-size: 1.4rem;
+      color: var(--text-medium);
+
+     }
+    }
+    
+    h3 {
+      font-weight: 600;
+      color: var(--text-medium);
+      font-size: 1rem;
+    }
+    span {
+      font-size: 10px;
+      text-align: center;
+
+      background-color: var(--surface);
+      border-radius: 3px;
+      color: var(--text-high);
+      padding: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
   }
 }
@@ -149,10 +175,9 @@ main {
   display: grid;
   place-items: center;
 
-  #content{
+  #content {
     background-color: var(--prio-urgent);
     width: 80%;
     height: 80%;
-
   }
 }

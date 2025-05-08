@@ -1,18 +1,8 @@
 import "./global-styles.css";
-
-class Task {
-  constructor({ title, description, dueDate, priority, isDone = false }) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.isDone = isDone;
-  }
-
-  toggleDone() {
-    this.isDone = !this.isDone;
-  }
-}
+import { Project } from "./models/project";
+import { Task } from "./models/task";
+// import { DomManipulations } from "./modules/dom-controls";
+import "./modules/dom-controls";
 
 const doThedishes = new Task({
   title: "Do dishes",
@@ -30,39 +20,14 @@ const study = new Task({
 
 console.log(doThedishes);
 
-class Project {
-  constructor(title) {
-    this.title = title;
-  }
-  #tasks = [];
-
-  get allTasks() {
-    return [...this.#tasks];
-  }
-
-  get numberOfTasks() {
-    return this.#tasks.length;
-  }
-
-  addTask(task) {
-    this.#tasks.push(task);
-  }
-
-  addMultipleTasks(tasks) {
-    tasks.forEach((task) => {
-      this.#tasks.push(task);
-    });
-  }
-
-  deleteTask(taskIndex) {
-    this.#tasks.splice(taskIndex, 1);
-  }
-}
-
 const homeProject = new Project("Home");
 homeProject.addMultipleTasks([doThedishes, study]);
 
-const doneProjects = homeProject.allTasks.filter((val, index) => {
-  return val.isDone;
-});
+homeProject.allTasks[0].toggleDone();
+const doneProjects = homeProject.completedTasks;
 console.log(doneProjects);
+console.log(homeProject.numberOfCompletedTasks);
+
+// const domMagic = new DomManipulations();
+
+

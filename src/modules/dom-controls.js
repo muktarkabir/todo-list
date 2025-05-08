@@ -1,3 +1,5 @@
+import { createProjectCard } from "./utilities";
+
 export class DomManipulations {
   constructor() {
     this.document = document.body;
@@ -7,9 +9,16 @@ export class DomManipulations {
   featuresContainer = this.sidebar.querySelector("div.features");
   projectsContainer = this.sidebar.querySelector(".projects");
   mainContent = document.querySelector("main");
-
-    makeSideBarInvisible(){
-        console.log(this.featuresContainer);
-
-    }
 }
+
+export const domStuff = (() => {
+  const sidebar = document.querySelector("aside");
+  const featuresContainer = sidebar.querySelector("div.features");
+  const projectsContainer = sidebar.querySelector(".projects");
+  const mainContent = document.querySelector("main");
+
+    console.log(sidebar);
+
+projectsContainer.append(createProjectCard({titleText:"Personal",color:"pink"}));    
+    
+})();
