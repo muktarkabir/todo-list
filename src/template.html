@@ -84,5 +84,25 @@
     <main>
       <div id="content"></div>
     </main>
+    <dialog class="project">
+      <form action="#" method="dialog">
+        <div>
+          <h3>Add Project</h3>
+          <hr />
+          <label for="name">Name</label><br />
+          <input
+            type="text"
+            name="project-name"
+            id="name"
+            required
+            maxlength="50"
+          />
+        </div>
+        <div class="buttons">
+          <button type="button" class="cancel">Cancel</button>
+          <button type="submit" class="add-project">Create</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

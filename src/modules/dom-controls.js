@@ -16,9 +16,14 @@ export const domStuff = (() => {
   const featuresContainer = sidebar.querySelector("div.features");
   const projectsContainer = sidebar.querySelector(".projects");
   const mainContent = document.querySelector("main");
+  const addProjectButton = document.querySelector(".heading p");
+  const addProjectDialog = document.querySelector("dialog.project");
+  
+projectsContainer.append(createProjectCard({titleText:"Personal",color:"pink"}));   
 
-    console.log(sidebar);
 
-projectsContainer.append(createProjectCard({titleText:"Personal",color:"pink"}));    
+addProjectButton.addEventListener("click",()=>{
+  addProjectDialog.showModal();
+});
     
 })();
