@@ -22,8 +22,6 @@ export const domStuff = (() => {
   const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
   const addProjectConfirmButton = addProjectDialog.querySelector(".add-project");
   
-projectsContainer.append(createProjectCard({titleText:"Personal",color:"pink"}));   
-
 
 addProjectOpenButton.addEventListener("click",()=>{
   addProjectDialog.showModal();
