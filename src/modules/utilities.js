@@ -1,3 +1,5 @@
+import { Project } from "../models/project";
+
 export function createProjectCard({ titleText, color }) {
   const card = createElement({ tagName: "div", className: "project" });
   const iconContainer = createElement({ tagName: "div" });
@@ -31,3 +33,8 @@ function createHashSignSvg(color) {
   svg.append(path);
   return svg;
 }
+
+export const createProject = (title) => {
+  const createdProject = new Project(title);
+  
+};
