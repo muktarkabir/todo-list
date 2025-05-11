@@ -22,6 +22,13 @@ export const domStuff = (() => {
   const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
   const addProjectConfirmButton = addProjectDialog.querySelector(".add-project");
   
+  const addTaskDialog = document.querySelector("dialog.task");
+  const newTaskTitle = addTaskDialog.querySelector("input#title");
+  const newTaskDescription = addTaskDialog.querySelector("input#description");
+  const addTaskCancelButton = addTaskDialog.querySelector(".cancel");
+  const addTaskConfirmButton = addTaskDialog.querySelector(".add-task");
+
+  const addTaskButton = featuresContainer.querySelector(".add-task");
 
 addProjectOpenButton.addEventListener("click",()=>{
   addProjectDialog.showModal();
@@ -35,6 +42,11 @@ addProjectConfirmButton.addEventListener("click",(e)=>{
     e.preventDefault();
     addProjectDialog.close();
   }
+});
+
+addTaskButton.addEventListener("click",()=>{
+  addTaskButton.showModal();
 })
+
     
 })();

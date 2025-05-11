@@ -181,6 +181,10 @@ main {
   }
 }
 
+dialog.task:open{
+  height: auto;
+}
+
 dialog:open {
   margin: auto;
   width: min(500px, 100%);
@@ -189,6 +193,7 @@ dialog:open {
   border-radius: 10px;
   border: none;
   padding: 8px;
+
 
   hr {
     border: 1px solid rgb(128, 128, 128, 0.5);
