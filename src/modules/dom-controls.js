@@ -58,5 +58,9 @@ export const domStuff = (() => {
     projectsContainer.innerHTML = "";
   }
 
-  return { apppendProject,clearProjects };
+  const updateNumberOfProjects = (newNumber) =>{
+    document.querySelector(".heading span").textContent = `used: ${newNumber}/10`;
+  };
+
+  return { apppendProject,clearProjects,updateNumberOfProjects };
 })();

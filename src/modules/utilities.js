@@ -39,6 +39,7 @@ function createHashSignSvg(color) {
 export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
   renderProjects();
+  domStuff.updateNumberOfProjects(projects.length);
 };
 
 export const renderProjects = () => {
