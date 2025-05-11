@@ -2,7 +2,7 @@ import "./global-styles.css";
 import { Project } from "./models/project";
 import { Task } from "./models/task";
 // import { DomManipulations } from "./modules/dom-controls";
-import "./modules/dom-controls";
+import { domStuff } from "./modules/dom-controls";
 
 const doThedishes = new Task({
   title: "Do dishes",
@@ -30,5 +30,4 @@ console.log(homeProject.numberOfCompletedTasks);
 
 // const domMagic = new DomManipulations();
 
-
-
+const projects = [new Project("Personal")];
