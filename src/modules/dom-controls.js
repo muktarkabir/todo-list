@@ -54,5 +54,9 @@ export const domStuff = (() => {
     projectsContainer.append(projectCard);
   };
 
-  return { apppendProject };
+  const clearProjects = ()=>{
+    projectsContainer.innerHTML = "";
+  }
+
+  return { apppendProject,clearProjects };
 })();

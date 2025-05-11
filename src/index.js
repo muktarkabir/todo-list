@@ -3,7 +3,7 @@ import { Project } from "./models/project";
 import { Task } from "./models/task";
 // import { DomManipulations } from "./modules/dom-controls";
 import { domStuff } from "./modules/dom-controls";
-import { updateDom } from "./modules/utilities";
+import { updateDom, updateProjectsSection } from "./modules/utilities";
 
 const doThedishes = new Task({
   title: "Do dishes",
@@ -34,5 +34,5 @@ console.log(homeProject.numberOfCompletedTasks);
 export const projects = [new Project("Personal")];
 console.log(projects[0]);
 
-updateDom();
+updateProjectsSection();
 
