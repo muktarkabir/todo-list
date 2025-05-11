@@ -1,4 +1,6 @@
-import { Project } from "../models/project";
+import { projects } from "../index.js";
+import { Project } from "../models/project.js";
+import {domStuff} from "./dom-controls.js";
 
 export function createProjectCard({ titleText, color }) {
   const card = createElement({ tagName: "div", className: "project" });
@@ -34,7 +36,30 @@ function createHashSignSvg(color) {
   return svg;
 }
 
-export const createProject = (title) => {
-  const createdProject = new Project(title);
-  
+export const createAndApppendProject = (title) => {
+  projects.push(new Project(title));
+  updateDom();
 };
+
+export const updateDom = () => {
+  projects.forEach((project, index) => {
+    const renderedProject = createProjectCard({
+      titleText: project.title,
+      color: standoutColors[index],
+    });
+    domStuff.apppendProject(renderedProject);
+  });
+};
+
+export const standoutColors = [
+  "#FF5733", // bright red-orange
+  "#33C3FF", // vivid sky blue
+  "#FFC300", // strong yellow
+  "#DA33FF", // electric purple
+  "#4CAF50", // bright green
+  "#FF3B77", // hot pink
+  "#00E676", // neon mint
+  "#FF6F00", // deep orange
+  "#2979FF", // strong blue
+  "#D500F9", // neon magenta
+];

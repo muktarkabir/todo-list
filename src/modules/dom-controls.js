@@ -1,4 +1,4 @@
-import { createProjectCard } from "./utilities";
+import { createAndApppendProject} from "./utilities";
 
 export class DomManipulations {
   constructor() {
@@ -20,8 +20,9 @@ export const domStuff = (() => {
   const addProjectDialog = document.querySelector("dialog.project");
   const newProjectName = addProjectDialog.querySelector("input");
   const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
-  const addProjectConfirmButton = addProjectDialog.querySelector(".add-project");
-  
+  const addProjectConfirmButton =
+    addProjectDialog.querySelector(".add-project");
+
   const addTaskDialog = document.querySelector("dialog.task");
   const newTaskTitle = addTaskDialog.querySelector("input#title");
   const newTaskDescription = addTaskDialog.querySelector("input#description");
@@ -30,23 +31,28 @@ export const domStuff = (() => {
 
   const addTaskButton = featuresContainer.querySelector(".add-task");
 
-addProjectOpenButton.addEventListener("click",()=>{
-  addProjectDialog.showModal();
-});
-addProjectCancelButton.addEventListener("click",()=>{
-  addProjectDialog.close();
-})
-
-addProjectConfirmButton.addEventListener("click",(e)=>{
-  if (newProjectName.value) {
-    e.preventDefault();
+  addProjectOpenButton.addEventListener("click", () => {
+    addProjectDialog.showModal();
+  });
+  addProjectCancelButton.addEventListener("click", () => {
     addProjectDialog.close();
-  }
-});
+  });
 
-addTaskButton.addEventListener("click",()=>{
-  addTaskDialog.showModal();
-})
+  addProjectConfirmButton.addEventListener("click", (e) => {
+    if (newProjectName.value) {
+      e.preventDefault();
+      createAndApppendProject(newProjectName.value.trim());
+      addProjectDialog.close();
+    }
+  });
 
-    
+  addTaskButton.addEventListener("click", () => {
+    addTaskDialog.showModal();
+  });
+
+  const apppendProject = (projectCard) => {
+    projectsContainer.append(projectCard);
+  };
+
+  return { apppendProject };
 })();
