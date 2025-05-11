@@ -45,7 +45,7 @@ addProjectConfirmButton.addEventListener("click",(e)=>{
 });
 
 addTaskButton.addEventListener("click",()=>{
-  addTaskButton.showModal();
+  addTaskDialog.showModal();
 })
 
     
