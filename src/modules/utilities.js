@@ -38,10 +38,10 @@ function createHashSignSvg(color) {
 
 export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
-  updateProjectsSection();
+  renderProjects();
 };
 
-export const updateProjectsSection = () => {
+export const renderProjects = () => {
   domStuff.clearProjects();
   projects.forEach((project, index) => {
     const renderedProject = createProjectCard({
