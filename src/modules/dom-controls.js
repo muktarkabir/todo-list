@@ -1,5 +1,5 @@
 import { projects } from "../index.js";
-import { createAndApppendProject} from "./utilities";
+import { createAndApppendProject } from "./utilities";
 
 export class DomManipulations {
   constructor() {
@@ -51,22 +51,30 @@ export const domStuff = (() => {
     addTaskDialog.showModal();
   });
 
+  projectsContainer.addEventListener("click", (e) => {
+    if (e.target.matches("div.project")) {
+      console.log(e.target);
+    }
+    if (e.target.matches("p") || e.target.matches("svg")) {
+      console.log(e.target.parentElement);
+      
+    }
+  },{capture:true});
 
-  projectsContainer.addEventListener("click",(e)=>{
-        
-  })
 
   const apppendProject = (projectCard) => {
     projectsContainer.append(projectCard);
   };
 
-  const clearProjects = ()=>{
+  const clearProjects = () => {
     projectsContainer.innerHTML = "";
-  }
-
-  const updateNumberOfProjects = (newNumber) =>{
-    document.querySelector(".heading span").textContent = `used: ${newNumber}/10`;
   };
 
-  return { apppendProject,clearProjects,updateNumberOfProjects };
+  const updateNumberOfProjects = (newNumber) => {
+    document.querySelector(
+      ".heading span"
+    ).textContent = `used: ${newNumber}/10`;
+  };
+
+  return { apppendProject, clearProjects, updateNumberOfProjects };
 })();

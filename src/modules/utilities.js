@@ -1,9 +1,10 @@
 import { projects } from "../index.js";
 import { Project } from "../models/project.js";
-import {domStuff} from "./dom-controls.js";
+import { domStuff } from "./dom-controls.js";
 
-export function createProjectCard({ titleText, color }) {
+export function createProjectCard({ titleText, color, index }) {
   const card = createElement({ tagName: "div", className: "project" });
+  card.dataset.index = index;
   const iconContainer = createElement({ tagName: "div" });
 
   const svgIcon = createHashSignSvg(color);
@@ -11,6 +12,7 @@ export function createProjectCard({ titleText, color }) {
   title.textContent = titleText;
   iconContainer.append(svgIcon);
   card.append(svgIcon, title);
+
   return card;
 }
 
@@ -39,7 +41,6 @@ function createHashSignSvg(color) {
 export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
   renderProjects();
-  domStuff.updateNumberOfProjects(projects.length);
 };
 
 export const renderProjects = () => {
@@ -49,6 +50,7 @@ export const renderProjects = () => {
     const renderedProject = createProjectCard({
       titleText: project.title,
       color: standoutColors[index],
+      index: index,
     });
     domStuff.apppendProject(renderedProject);
   });
