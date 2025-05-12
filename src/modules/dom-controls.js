@@ -19,6 +19,7 @@ export const domStuff = (() => {
   const mainContent = document.querySelector("main");
   const addProjectOpenButton = document.querySelector(".heading p");
   const addProjectDialog = document.querySelector("dialog.project");
+  const addProjectForm = addProjectDialog.querySelector("form");
   const newProjectName = addProjectDialog.querySelector("input");
   const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
   const addProjectConfirmButton =
@@ -37,6 +38,7 @@ export const domStuff = (() => {
   });
   addProjectCancelButton.addEventListener("click", () => {
     addProjectDialog.close();
+    addProjectForm.reset();
   });
 
   addProjectConfirmButton.addEventListener("click", (e) => {
@@ -44,6 +46,8 @@ export const domStuff = (() => {
       e.preventDefault();
       createAndApppendProject(newProjectName.value.trim());
       addProjectDialog.close();
+    addProjectForm.reset();
+
     }
   });
 
