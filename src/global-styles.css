@@ -15,6 +15,7 @@
   --text-high: light-dark(#212121, #e0e0e0);
   --text-medium: light-dark(#666666, #b3b3b3);
   --divider: light-dark(#e0e0e0, #2c2c2c);
+  --hover-color: light-dark(rgb(0,0,0,0.2),rgb(255,255,255,0.2));
 
   /* Priorities */
   --prio-low: #4caf50;
@@ -122,13 +123,16 @@ aside {
     align-items: center;
     color: var(--text-medium);
     margin-bottom: 0.4rem;
+    cursor: pointer;
 
     svg {
-      /* fill: goldenrod;
-      width: 20px;
-      aspect-ratio: 1; */
       margin-left: auto;
     }
+  }
+
+  & .project:hover{
+    background-color: var(--hover-color);
+    border-radius: 8px;
   }
 
   .heading {

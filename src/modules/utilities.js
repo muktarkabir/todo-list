@@ -44,6 +44,7 @@ export const createAndApppendProject = (title) => {
 
 export const renderProjects = () => {
   domStuff.clearProjects();
+  domStuff.updateNumberOfProjects(projects.length);
   projects.forEach((project, index) => {
     const renderedProject = createProjectCard({
       titleText: project.title,

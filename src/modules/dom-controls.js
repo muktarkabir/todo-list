@@ -1,3 +1,4 @@
+import { projects } from "../index.js";
 import { createAndApppendProject} from "./utilities";
 
 export class DomManipulations {
@@ -49,6 +50,11 @@ export const domStuff = (() => {
   addTaskButton.addEventListener("click", () => {
     addTaskDialog.showModal();
   });
+
+
+  projectsContainer.addEventListener("click",(e)=>{
+        
+  })
 
   const apppendProject = (projectCard) => {
     projectsContainer.append(projectCard);
