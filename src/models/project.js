@@ -33,4 +33,8 @@ export class Project {
   get numberOfCompletedTasks(){
     return this.#tasks.filter((task)=> task.isDone).length;
   }
+
+  toString(){
+    return `Project name:${this.title}, Tasks:[${this.#tasks}]`
+  }
 }

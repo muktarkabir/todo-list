@@ -54,9 +54,12 @@ export const domStuff = (() => {
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
       console.log(e.target);
+      mainContent.innerHTML = `${projects[e.target.dataset.index].toString()}`;
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
       console.log(e.target.parentElement);
+      mainContent.innerHTML = `${projects[e.target.parentElement.dataset.index].toString()}`;
+
       
     }
   },{capture:true});
