@@ -5,7 +5,7 @@ export class Project {
   #tasks = [];
 
   get allTasks() {
-    return [...this.#tasks];
+    return this.#tasks;
   }
 
   get numberOfTasks() {

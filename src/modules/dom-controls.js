@@ -1,5 +1,5 @@
 import { projects } from "../index.js";
-import { createAndApppendProject } from "./utilities";
+import { createAndApppendProject, viewProject } from "./utilities";
 
 export class DomManipulations {
   constructor() {
@@ -46,8 +46,7 @@ export const domStuff = (() => {
       e.preventDefault();
       createAndApppendProject(newProjectName.value.trim());
       addProjectDialog.close();
-    addProjectForm.reset();
-
+      addProjectForm.reset();
     }
   });
 
@@ -58,16 +57,14 @@ export const domStuff = (() => {
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
       console.log(e.target);
-      mainContent.innerHTML = `${projects[e.target.dataset.index].toString()}`;
+      mainContent.querySelector("#content").replaceChildren(viewProject(projects[0]));
+
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
       console.log(e.target.parentElement);
-      mainContent.innerHTML = `${projects[e.target.parentElement.dataset.index].toString()}`;
-
-      
+      mainContent.querySelector("#content").replaceChildren(viewProject(projects[0]));
     }
-  },{capture:true});
-
+  });
 
   const apppendProject = (projectCard) => {
     projectsContainer.append(projectCard);
