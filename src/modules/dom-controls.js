@@ -16,7 +16,8 @@ export const domStuff = (() => {
   const sidebar = document.querySelector("aside");
   const featuresContainer = sidebar.querySelector("div.features");
   const projectsContainer = sidebar.querySelector(".projects");
-  const mainContent = document.querySelector("main");
+  const main = document.querySelector("main");
+  const mainContent = main.querySelector("#content");
   const addProjectOpenButton = document.querySelector(".heading p");
   const addProjectDialog = document.querySelector("dialog.project");
   const addProjectForm = addProjectDialog.querySelector("form");
@@ -57,12 +58,17 @@ export const domStuff = (() => {
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
       console.log(e.target);
-      mainContent.querySelector("#content").replaceChildren(viewProject(projects[0]));
-
+      mainContent.replaceChildren(
+        viewProject(projects[Number.parseInt(e.target.dataset.index)])
+      );
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
       console.log(e.target.parentElement);
-      mainContent.querySelector("#content").replaceChildren(viewProject(projects[0]));
+      mainContent.replaceChildren(
+        viewProject(
+          projects[Number.parseInt(e.target.parentElement.dataset.index)]
+        )
+      );
     }
   });
 
