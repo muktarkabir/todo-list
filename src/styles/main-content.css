@@ -1,0 +1,7 @@
+@import "../global-styles.css";
+
+#content {
+  background-color: var(--prio-urgent);
+  width: 80%;
+  height: 80%;
+}
