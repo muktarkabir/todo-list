@@ -56,7 +56,22 @@ export const renderProjects = () => {
   });
 };
 
-export const standoutColors = [
+export const viewProject = (project) => {
+  const container = createElement({ tagName: "div" });
+  const heading = createElement({ tagName: "h1" });
+  const tasks = createElement({ tagName: "ul" });
+  heading.textContent = project.title;
+  project.allTasks.forEach((task, index) => {
+    const renderedTask = createElement({ tagName: "li" });
+    renderedTask.textContent = task.title;
+    tasks.append(renderedTask);
+  });
+  container.append(heading, tasks);
+
+  return container;
+};
+
+const standoutColors = [
   "#FF5733", // bright red-orange
   "#33C3FF", // vivid sky blue
   "#FFC300", // strong yellow
