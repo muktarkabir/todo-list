@@ -63,11 +63,28 @@ export const viewProject = (project) => {
   heading.textContent = project.title;
   project.allTasks.forEach((task, index) => {
     const renderedTask = createElement({ tagName: "li" });
-    renderedTask.textContent = task.title + "::::" + task.description + task.dueDate.getDate();
+    renderedTask.textContent =
+      task.title + "::::" + task.description + task.dueDate.getDate();
     tasks.append(renderedTask);
   });
   container.append(heading, tasks);
 
+  return container;
+};
+
+export const taskTile = (task) => {
+  const { title, description, dueDate, isDone } = task;
+  const container = createElement({ tagName: "div" });
+  const heading = createElement({ tagName: "h4" });
+  const details = createElement({ tagName: "p" });
+  const dateDisplay = createElement({ tagName: "p" });
+  const checkBox = createElement({ tagName: "checkbox" });
+  heading.textContent = title;
+  details.textContent = description;
+  dateDisplay.textContent = dueDate;
+  checkBox.isChecked = isDone;
+
+  container.append(heading, details, dateDisplay, checkBox);
   return container;
 };
 

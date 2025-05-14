@@ -1,7 +1,8 @@
 @import "../global-styles.css";
 
 #content {
-  background-color: var(--prio-urgent);
   width: 80%;
-  height: 80%;
+  height: 86%;
+  border: 1px dashed orange;
+  padding: .8rem;
 }
