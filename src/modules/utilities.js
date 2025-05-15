@@ -1,6 +1,7 @@
 import { projects } from "../index.js";
 import { Project } from "../models/project.js";
 import { domStuff } from "./dom-controls.js";
+import "../styles/task-tile.css";
 
 export function createProjectCard({ titleText, color, index }) {
   const card = createElement({ tagName: "div", className: "project" });
@@ -74,11 +75,12 @@ export const viewProject = (project) => {
 
 export const taskTile = (task) => {
   const { title, description, dueDate, isDone } = task;
-  const container = createElement({ tagName: "div" });
+  const container = createElement({ tagName: "div",className:"task-tile" });
   const heading = createElement({ tagName: "h4" });
   const details = createElement({ tagName: "p" });
   const dateDisplay = createElement({ tagName: "p" });
-  const checkBox = createElement({ tagName: "checkbox" });
+  const checkBox = createElement({ tagName: "input" });
+  checkBox.type = 'checkbox';
   heading.textContent = title;
   details.textContent = description;
   dateDisplay.textContent = dueDate;
