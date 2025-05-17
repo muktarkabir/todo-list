@@ -76,6 +76,7 @@ export const viewProject = (project) => {
 export const taskTile = (task) => {
   const { title, description, dueDate, isDone } = task;
   const container = createElement({ tagName: "div",className:"task-tile" });
+  container.innerHtml = `<h4>${title}</h4><div>${description,dueDate,isDone}</div>`;
   const heading = createElement({ tagName: "h4" });
   const details = createElement({ tagName: "p" });
   const dateDisplay = createElement({ tagName: "p" });
