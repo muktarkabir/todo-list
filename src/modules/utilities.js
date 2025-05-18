@@ -75,19 +75,12 @@ export const viewProject = (project) => {
 
 export const taskTile = (task) => {
   const { title, description, dueDate, isDone } = task;
-  const container = createElement({ tagName: "div",className:"task-tile" });
-  container.innerHtml = `<h4>${title}</h4><div>${description,dueDate,isDone}</div>`;
-  const heading = createElement({ tagName: "h4" });
-  const details = createElement({ tagName: "p" });
-  const dateDisplay = createElement({ tagName: "p" });
-  const checkBox = createElement({ tagName: "input" });
-  checkBox.type = 'checkbox';
-  heading.textContent = title;
-  details.textContent = description;
-  dateDisplay.textContent = dueDate;
-  checkBox.isChecked = isDone;
-
-  container.append(heading, details, dateDisplay, checkBox);
+  const container = createElement({ tagName: "div", className: "task-tile" });
+  container.innerHTML = `<h4>${title}</h4>
+                         <div><p>${description}</p>
+                         <p>${dueDate}</p>
+                         <input type ="checkbox"/>
+                         </div>`;
   return container;
 };
 
