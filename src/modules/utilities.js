@@ -96,3 +96,9 @@ const standoutColors = [
   "#2979FF", // strong blue
   "#D500F9", // neon magenta
 ];
+const priorities = {
+  low: "#4caf50",
+  medium:"#ffca28",
+  high:"#ff5722",
+  urgent:"#d32f2f"
+};
