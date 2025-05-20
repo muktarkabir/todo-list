@@ -86,5 +86,9 @@ export const domStuff = (() => {
     ).textContent = `used: ${newNumber}/10`;
   };
 
+  const addTask = (projectIndex,task)=> {
+    projects[projectIndex].addTask(task);
+  }
+
   return { apppendProject, clearProjects, updateNumberOfProjects };
 })();
