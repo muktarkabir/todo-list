@@ -63,12 +63,12 @@ export const renderProjects = () => {
 export const viewProject = (project) => {
   const container = createElement({ tagName: "div" });
   const heading = createElement({ tagName: "h1" });
-  const tasks = createElement({ tagName: "ul" });
+  const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
   project.allTasks.forEach((task, index) => {
-    const renderedTask = createElement({ tagName: "li" });
-    renderedTask.textContent =
-      task.title + "::::" + task.description + task.dueDate.getDate();
+    const renderedTask = taskTile(task);
+    // renderedTask.textContent =
+    //   task.title + "::::" + task.description + task.dueDate.getDate();
     tasks.append(renderedTask);
   });
   container.append(heading, tasks);

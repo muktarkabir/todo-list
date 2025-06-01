@@ -74,11 +74,14 @@ export const domStuff = (() => {
       let newTask = new Task({
         title: newTaskTitle.value.trim(),
         description: newTaskDescription.value.trim(),
-        dueDate: new Date(newTaskDuedate.value),
-        priority: newTaskPriority.selectedIndex.value,
+        dueDate: new Date(newTaskDuedate.valueAsDate),
+        priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
       });
-
-      addTask({ projectIndex: addTaskProjectDropdown.selectedIndex, newTask });
+      console.log(newTask);
+      
+      console.log(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value);
+      
+      addTask({ projectIndex: Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value), task:newTask });
     addTaskDialog.close();
 
     }
