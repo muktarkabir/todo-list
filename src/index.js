@@ -23,4 +23,3 @@ document.querySelector("#content").append(tile);
 
 
 renderProjects();
-domStuff.addProjectsToDropdown();

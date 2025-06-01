@@ -1,5 +1,6 @@
 import { projects } from "../index.js";
-import { createAndApppendProject, viewProject } from "./utilities";
+import { createAndApppendProject, viewProject, addTask } from "./utilities";
+import { Task } from "../models/task.js";
 
 export class DomManipulations {
   constructor() {
@@ -29,6 +30,8 @@ export const domStuff = (() => {
   const addTaskDialog = document.querySelector("dialog.task");
   const newTaskTitle = addTaskDialog.querySelector("input#title");
   const newTaskDescription = addTaskDialog.querySelector("input#description");
+  const newTaskDuedate = addTaskDialog.querySelector("input#due-date");
+  const newTaskPriority = addTaskDialog.querySelector("select#priority");
   const addTaskProjectDropdown = addTaskDialog.querySelector("select#project");
   const addTaskCancelButton = addTaskDialog.querySelector(".cancel");
   const addTaskConfirmButton = addTaskDialog.querySelector(".add-task");
@@ -56,7 +59,30 @@ export const domStuff = (() => {
     addProjectsToDropdown();
     addTaskDialog.showModal();
   });
+  addTaskCancelButton.addEventListener("click", () => {
+    addTaskDialog.close();
+  });
 
+  addTaskConfirmButton.addEventListener("click", (e) => {
+    if (
+      newTaskTitle.value &&
+      newTaskDescription.value &&
+      newTaskDuedate.value &&
+      addTaskProjectDropdown.selectedIndex != -1
+    ) {
+      e.preventDefault();
+      let newTask = new Task({
+        title: newTaskTitle.value.trim(),
+        description: newTaskDescription.value.trim(),
+        dueDate: new Date(newTaskDuedate.value),
+        priority: newTaskPriority.selectedIndex.value,
+      });
+
+      addTask({ projectIndex: addTaskProjectDropdown.selectedIndex, newTask });
+    addTaskDialog.close();
+
+    }
+  });
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
       console.log(e.target);
@@ -88,20 +114,17 @@ export const domStuff = (() => {
     ).textContent = `used: ${newNumber}/10`;
   };
 
-  const addProjectsToDropdown = () =>{
-    console.log(addTaskProjectDropdown);
-    projects.forEach((project,index)=>{
-      // let option = document.createElement("option");
-      // option.value = project.title;
-      // option.dataset.index = index;
-      // option.textContent = project.title;
-      // console.log(option);
-      addTaskProjectDropdown.add(new Option(project.title,index));
-      console.log(addTaskProjectDropdown);
-      
+  const addProjectsToDropdown = () => {
+    addTaskProjectDropdown.innerHTML = "";
+    projects.forEach((project, index) => {
+      addTaskProjectDropdown.add(new Option(project.title, index));
     });
-  }
+  };
 
-
-  return { apppendProject, clearProjects, updateNumberOfProjects,addProjectsToDropdown};
+  return {
+    apppendProject,
+    clearProjects,
+    updateNumberOfProjects,
+    addProjectsToDropdown,
+  };
 })();
