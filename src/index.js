@@ -6,6 +6,7 @@ import { Project } from "./models/project";
 import { Task } from "./models/task.js";
 import { renderProjects } from "./modules/utilities";
 import { taskTile } from "./modules/utilities.js";
+import { domStuff } from "./modules/dom-controls.js";
 
 export const projects = [new Project("Personal")];
 
@@ -20,4 +21,6 @@ let tile = taskTile(task);
 
 document.querySelector("#content").append(tile);
 
+
 renderProjects();
+domStuff.addProjectsToDropdown();

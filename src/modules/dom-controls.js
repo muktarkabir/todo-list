@@ -29,6 +29,7 @@ export const domStuff = (() => {
   const addTaskDialog = document.querySelector("dialog.task");
   const newTaskTitle = addTaskDialog.querySelector("input#title");
   const newTaskDescription = addTaskDialog.querySelector("input#description");
+  const addTaskProjectDropdown = addTaskDialog.querySelector("select#project");
   const addTaskCancelButton = addTaskDialog.querySelector(".cancel");
   const addTaskConfirmButton = addTaskDialog.querySelector(".add-task");
 
@@ -52,6 +53,7 @@ export const domStuff = (() => {
   });
 
   addTaskButton.addEventListener("click", () => {
+    addProjectsToDropdown();
     addTaskDialog.showModal();
   });
 
@@ -86,9 +88,20 @@ export const domStuff = (() => {
     ).textContent = `used: ${newNumber}/10`;
   };
 
-  const addTask = (projectIndex,task)=> {
-    projects[projectIndex].addTask(task);
+  const addProjectsToDropdown = () =>{
+    console.log(addTaskProjectDropdown);
+    projects.forEach((project,index)=>{
+      // let option = document.createElement("option");
+      // option.value = project.title;
+      // option.dataset.index = index;
+      // option.textContent = project.title;
+      // console.log(option);
+      addTaskProjectDropdown.add(new Option(project.title,index));
+      console.log(addTaskProjectDropdown);
+      
+    });
   }
 
-  return { apppendProject, clearProjects, updateNumberOfProjects };
+
+  return { apppendProject, clearProjects, updateNumberOfProjects,addProjectsToDropdown};
 })();

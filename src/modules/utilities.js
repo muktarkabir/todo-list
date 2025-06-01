@@ -43,6 +43,9 @@ export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
   renderProjects();
 };
+export const addTask = ({projectIndex,task})=> {
+  projects[projectIndex].addTask(task);
+}
 
 export const renderProjects = () => {
   domStuff.clearProjects();
