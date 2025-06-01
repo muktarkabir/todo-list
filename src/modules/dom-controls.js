@@ -76,13 +76,10 @@ export const domStuff = (() => {
         description: newTaskDescription.value.trim(),
         dueDate: new Date(newTaskDuedate.valueAsDate),
         priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
-      });
-      console.log(newTask);
-      
-      console.log(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value);
-      
+      }); 
       addTask({ projectIndex: Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value), task:newTask });
     addTaskDialog.close();
+    addTaskDialog.querySelector("form").reset();
 
     }
   });
