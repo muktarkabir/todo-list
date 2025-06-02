@@ -79,11 +79,13 @@ export const viewProject = (project) => {
 export const taskTile = (task) => {
   const { title, description, dueDate, priority } = task;
   const container = createElement({ tagName: "div", className: "task-tile" });
-  container.style.border = `2px solid ${priorities[priority]}`;
-  container.innerHTML = `<h4>${title}</h4>
-                         <div><p>${description}</p>
-                         <p>${dueDate}</p>
-                         <input type ="checkbox"/>
+  container.style.border = `1px solid ${priorities[priority]}`;
+  container.style.borderLeft = `10px solid ${priorities[priority]}`;
+  container.style.borderRadius = '8px';
+                         
+  container.innerHTML = `<div class="the-input"><input type ="checkbox"/></div><div><h4>${title}</h4>
+                         <p>${description}</p>
+                         <p>${dueDate.toDateString()}</p>
                          </div>`;
   return container;
 };
