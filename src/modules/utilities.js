@@ -67,8 +67,6 @@ export const viewProject = (project) => {
   heading.textContent = project.title;
   project.allTasks.forEach((task, index) => {
     const renderedTask = taskTile(task);
-    // renderedTask.textContent =
-    //   task.title + "::::" + task.description + task.dueDate.getDate();
     tasks.append(renderedTask);
   });
   container.append(heading, tasks);

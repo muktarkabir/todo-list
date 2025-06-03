@@ -3,6 +3,6 @@
 #content {
   width: 80%;
   height: 86%;
-  border: 1px dashed orange;
+  /* border: 1px dashed orange; */
   padding: .8rem;
 }

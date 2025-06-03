@@ -80,6 +80,9 @@ export const domStuff = (() => {
       addTask({ projectIndex: Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value), task:newTask });
     addTaskDialog.close();
     addTaskDialog.querySelector("form").reset();
+    mainContent.replaceChildren(
+      viewProject(projects[Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value)])
+    );
 
     }
   });
