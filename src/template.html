@@ -118,14 +118,11 @@
             maxlength="50"
           />
           <label for="description">Description</label><br />
-          <input
-            type="text"
-            name="task-description"
-            id="description"
-            required
-            maxlength="150"
-          />
-          <label for="due-date">Due date</label><br />
+          <textarea name="task-description"
+          id="description"
+          required rows="10" cols="30"
+          maxlength="150"></textarea>
+          <label for="due-date">Due date</label>
           <input type="date" name="due-date" id="due-date" required/>
           <label for="priority">Priority</label>
           <select name="priority" id="priority">

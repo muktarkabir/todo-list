@@ -1,7 +1,7 @@
 @import "../global-styles.css";
 
 dialog.task:open {
-  height: auto;
+  height: fit-content;
 }
 
 dialog:open {
@@ -18,7 +18,7 @@ dialog:open {
     margin-top: 6px;
     margin-bottom: 6px;
   }
-  input {
+  input:not([type="date"]),textarea {
     width: 100%;
     height: 30px;
     outline: none;
@@ -28,6 +28,11 @@ dialog:open {
     border: 1px solid gray;
     margin-top: 8px;
   }
+  textarea[name="task-description"]{
+    height: 100px;
+    resize: none;
+    outline: none;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -36,6 +41,7 @@ dialog:open {
   }
   & .buttons {
     margin-left: auto;
+    margin-top: 16px;
     button {
       padding: 0.4rem;
       border: none;
