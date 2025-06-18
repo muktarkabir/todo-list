@@ -29,7 +29,7 @@ export const domStuff = (() => {
 
   const addTaskDialog = document.querySelector("dialog.task");
   const newTaskTitle = addTaskDialog.querySelector("input#title");
-  const newTaskDescription = addTaskDialog.querySelector("input#description");
+  const newTaskDescription = addTaskDialog.querySelector("textarea#description");
   const newTaskDuedate = addTaskDialog.querySelector("input#due-date");
   const newTaskPriority = addTaskDialog.querySelector("select#priority");
   const addTaskProjectDropdown = addTaskDialog.querySelector("select#project");
