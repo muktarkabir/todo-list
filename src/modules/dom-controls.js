@@ -78,11 +78,11 @@ export const domStuff = (() => {
         priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
       }); 
       addTask({ projectIndex: Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value), task:newTask });
+      mainContent.replaceChildren(
+        viewProject(projects[Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value)])
+      );
     addTaskDialog.close();
     addTaskDialog.querySelector("form").reset();
-    mainContent.replaceChildren(
-      viewProject(projects[Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value)])
-    );
 
     }
   });
