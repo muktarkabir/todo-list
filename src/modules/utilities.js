@@ -61,7 +61,7 @@ export const renderProjects = () => {
 };
 
 export const viewProject = (project) => {
-  const container = createElement({ tagName: "div" });
+  const container = createElement({ tagName: "div",className:"project-div" });
   const heading = createElement({ tagName: "h1" });
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;

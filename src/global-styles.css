@@ -45,6 +45,7 @@ body {
   grid-template-rows: auto;
   grid-template-areas: "side-bar main-content";
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 aside,
@@ -57,5 +58,8 @@ main {
   background-color: var(--surface);
   display: grid;
   place-items: center;
+  border: 2px solid blue;
+  max-height: 100%;
+  overflow: hidden;
 }
 
