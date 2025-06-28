@@ -4,10 +4,8 @@
   width: 80%;
   min-height: 86%;
   max-height: 86%;
-  /* border: 1px dashed orange; */
-  padding: 0.8rem;
+  padding: 0.6rem;
   overflow-y: auto;
-  grid-area: -1;
 }
 
 #content::-webkit-scrollbar {
@@ -23,6 +21,3 @@
 
 }
 
-.project-div {
-  /* height: 50px; */
-}

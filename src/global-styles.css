@@ -56,11 +56,16 @@ main {
 main {
   grid-area: main-content;
   display: grid;
-  grid-template-rows: 20px 1fr;
+  grid-template-rows: 60px 1fr;
   background-color: var(--surface);
   display: grid;
   place-items: center;
   max-height: 100%;
   overflow: hidden;
+}
+header{
+  background-color: burlywood;
+  width: 100%;
+  height: 100%;
 }
 

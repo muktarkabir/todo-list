@@ -17,6 +17,7 @@ aside {
       width: 44px;
       border-radius: 50%;
       border: 2px solid var(--surface);
+      cursor: pointer;
     }
     & i {
       color: var(--divider);
@@ -32,6 +33,7 @@ aside {
       align-items: center;
       color: var(--text-medium);
       margin-bottom: 0.3rem;
+      cursor: pointer;
 
       & svg {
         width: 20px;
