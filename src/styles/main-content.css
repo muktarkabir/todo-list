@@ -7,6 +7,7 @@
   /* border: 1px dashed orange; */
   padding: 0.8rem;
   overflow-y: auto;
+  grid-area: -1;
 }
 
 #content::-webkit-scrollbar {

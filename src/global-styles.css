@@ -55,10 +55,11 @@ main {
 
 main {
   grid-area: main-content;
+  display: grid;
+  grid-template-rows: 20px 1fr;
   background-color: var(--surface);
   display: grid;
   place-items: center;
-  border: 2px solid blue;
   max-height: 100%;
   overflow: hidden;
 }
