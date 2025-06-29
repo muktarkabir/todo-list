@@ -21,3 +21,41 @@
 
 }
 
+.add-task-div{
+  margin-top: 1rem;
+  & button{
+    all: unset;
+    width: 110px;
+    cursor: pointer;
+    padding: .2rem;
+    text-align: right;
+    position: relative;
+    color: grey;
+  }
+  & button:hover{
+    color: var(--secondary);
+    }
+  & button::before{
+    position: absolute;
+    left: 9px;
+    top: 2px;
+    width: 22px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: transparent;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    content: "+";
+    color: var(--secondary);
+
+
+  }
+  & button:hover::before{
+    background-color: var(--secondary);
+    color: white;
+    content: "+";
+
+  }
+}
+

@@ -62,6 +62,8 @@ export const renderProjects = () => {
 
 export const viewProject = (project) => {
   const container = createElement({ tagName: "div",className:"project-div" });
+  const addTaskDiv = createElement({tagName:"div",className:"add-task-div"});
+  addTaskDiv.innerHTML = '<button>Add Task</button>'
   const heading = createElement({ tagName: "h1" });
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
@@ -69,7 +71,7 @@ export const viewProject = (project) => {
     const renderedTask = taskTile(task);
     tasks.append(renderedTask);
   });
-  container.append(heading, tasks);
+  container.append(heading, tasks,addTaskDiv);
 
   return container;
 };
