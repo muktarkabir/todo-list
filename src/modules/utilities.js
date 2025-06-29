@@ -65,7 +65,7 @@ export const viewProject = (project) => {
   const heading = createElement({ tagName: "h1" });
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
-  project.allTasks.forEach((task, index) => {
+  project.allTasks.reverse().forEach((task, index) => {
     const renderedTask = taskTile(task);
     tasks.append(renderedTask);
   });
