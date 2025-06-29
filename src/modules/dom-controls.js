@@ -71,15 +71,16 @@ export const domStuff = (() => {
       addTaskProjectDropdown.selectedIndex != -1
     ) {
       e.preventDefault();
+      let selectedProject = addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value;
       let newTask = new Task({
         title: newTaskTitle.value.trim(),
         description: newTaskDescription.value.trim(),
         dueDate: new Date(newTaskDuedate.valueAsDate),
         priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
       }); 
-      addTask({ projectIndex: Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value), task:newTask });
+      addTask({ projectIndex: Number.parseInt(selectedProject), task:newTask });
       mainContent.replaceChildren(
-        viewProject(projects[Number.parseInt(addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value)])
+        viewProject(projects[Number.parseInt(selectedProject)])
       );
     addTaskDialog.close();
     addTaskDialog.querySelector("form").reset();
