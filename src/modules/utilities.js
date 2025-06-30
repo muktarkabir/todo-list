@@ -104,17 +104,13 @@ export const viewProject = (project) => {
     if (e.target instanceof HTMLInputElement) {
       let taskIndex = e.target.parentElement.parentElement.dataset.index;
       project.allTasks[taskIndex].toggleDone();
-      // console.log(project.allTasks[taskIndex], project.numberOfCompletedTasks);
       filters.querySelectorAll("button").forEach((childNode) => {
-        console.log(childNode); 
         if (childNode.classList.contains("active-pill")) {
-          console.log(childNode.classList);
           renderTasks(childNode.classList[0]);
-          showActiveTab(childNode.classList[0]);
           filters.querySelector("button.all span").innerHTML = `${project.numberOfTasks}`;
           filters.querySelector("button.low span").innerHTML = `${project.lowPriorityTasks.length}`;
           filters.querySelector("button.medium span").innerHTML = `${project.mediumPriorityTasks.length}`;
-          filters.querySelector("button.high span").innerHTML = `${project.mediumPriorityTasks.length}`;
+          filters.querySelector("button.high span").innerHTML = `${project.highPriorityTasks.length}`;
           filters.querySelector("button.urgent span").innerHTML = `${project.urgentPriorityTasks.length}`;
         }
       });
@@ -141,7 +137,6 @@ export const viewProject = (project) => {
   };
   const showActiveTab = (activeTab) => {
     filters.childNodes.forEach((node) => {
-      console.log(node);
       if (!node.classList.contains(activeTab)) {
         node.classList.remove("active-pill");
       }
