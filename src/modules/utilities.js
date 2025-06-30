@@ -41,6 +41,7 @@ function createHashSignSvg(color) {
 
 export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
+  projects.at(-1).index = projects.length - 1;
   renderProjects();
 };
 export const addTask = ({ projectIndex, task }) => {
@@ -72,7 +73,7 @@ export const viewProject = (project) => {
     tasks.append(renderedTask);
   });
   addTaskDiv.querySelector("button").addEventListener("click",()=>{
-    document.querySelector("dialog.task select#project").innerHTML = `<option value=${''}>${project.title}</option>`
+    document.querySelector("dialog.task select#project").innerHTML = `<option value=${project.index}>${project.title}</option>`
     document.querySelector("dialog.task").showModal();
   });
   container.append(heading, tasks, addTaskDiv);

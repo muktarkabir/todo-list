@@ -120,8 +120,8 @@ export const domStuff = (() => {
 
   const addProjectsToDropdown = () => {
     addTaskProjectDropdown.innerHTML = "";
-    projects.forEach((project, index) => {
-      addTaskProjectDropdown.add(new Option(project.title, index));
+    projects.forEach((project) => {
+      addTaskProjectDropdown.add(new Option(project.title, project.index));
     });
   };
 
