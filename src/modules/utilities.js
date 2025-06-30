@@ -159,7 +159,7 @@ export const taskTile = (task, index) => {
   container.innerHTML = `<div class="the-input"><input type ="checkbox"/></div><div><h4>${title}</h4>
                          <p>${description}</p>
                          <p>${dueDate.toDateString()}</p>
-                         </div>`;
+                         </div><div class="buttons"><button>Edit</button><button>Delete</button></div>`;
   return container;
 };
 

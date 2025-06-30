@@ -1,12 +1,21 @@
-.task-tile{
-    padding-left: .4rem;
-    margin-bottom: .4rem;
-    display: flex;
-    align-items: center;
-    gap: .6rem;
+.task-tile {
+  padding-left: 0.4rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 
+  .the-input {
+    align-self: self-start;
+  }
 
-    .the-input{
-        align-self: self-start;
+  & .buttons {
+    opacity: 0;
+  }
+}
+
+.task-tile:hover{
+    .buttons{
+        opacity: 100%;
     }
 }
