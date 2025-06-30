@@ -3,6 +3,14 @@ export class Project {
     this.title = title;
   }
   #tasks = [];
+  #index;
+
+  set index(value){
+    this.#index = value;
+  }
+  get index(){
+    return this.#index;
+  }
 
   get allTasks() {
     return this.#tasks;
