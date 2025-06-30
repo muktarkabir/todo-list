@@ -2,6 +2,7 @@ import { projects } from "../index.js";
 import { Project } from "../models/project.js";
 import { domStuff } from "./dom-controls.js";
 import "../styles/task-tile.css";
+import "../styles/main-content.css";
 
 export function createProjectCard({ titleText, color, index }) {
   const card = createElement({ tagName: "div", className: "project" });
@@ -70,9 +71,14 @@ export const viewProject = (project) => {
   addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
   const filters = createElement({ tagName: "div", className: "filters" });
-  filters.innerHTML = `<button>All ${project.allTasks.length}</button><button>Low ${project.numberOfTasks}</button><button>Medium ${project.allTasks.length}</button><button>High ${project.allTasks.length}</button><button>Urgent ${project.allTasks.length}</button>`;
+  filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button>
+  <button class="low">Low ${project.lowPriorityTasks.length}</button>
+  <button class="medium">Medium ${project.mediumPriorityTasks.length}</button>
+  <button class="high">High ${project.highPriorityTasks.length}</button>
+  <button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
+  filters.querySelector("button.all").classList.add("active-pill");
   project.allTasks.forEach((task, index) => {
     const renderedTask = taskTile(task);
     tasks.append(renderedTask);

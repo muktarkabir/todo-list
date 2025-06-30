@@ -20,16 +20,16 @@ export class Project {
     return this.#tasks.length;
   }
   get lowPriorityTasks() {
-    return this.#tasks.filter((task) => task.priority == "low");
+    return this.#tasks.filter((task,index) => task.priority == "low");
   }
   get mediumPriorityTasks() {
-    return this.#tasks.filter((task) => task.priority == "medium");
+    return this.#tasks.filter((task,index) => task.priority == "medium");
   }
   get highPriorityTasks() {
-    return this.#tasks.filter((task) => task.priority == "high");
+    return this.#tasks.filter((task,index) => task.priority == "high");
   }
   get urgentPriorityTasks() {
-    return this.#tasks.filter((task) => task.priority == "urgent");
+    return this.#tasks.filter((task,index) => task.priority == "urgent");
   }
 
   addTask(task) {

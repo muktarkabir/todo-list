@@ -18,25 +18,24 @@
 #content::-webkit-scrollbar-track {
   background-color: transparent;
   height: 4px;
-
 }
 
-.add-task-div{
+.add-task-div {
   margin-top: 1rem;
   width: auto;
-  & button{
+  & button {
     all: unset;
     width: 110px;
     cursor: pointer;
-    padding: .2rem;
+    padding: 0.2rem;
     text-align: right;
     position: relative;
     color: grey;
   }
-  & button:hover{
+  & button:hover {
     color: var(--secondary);
-    }
-  & button::before{
+  }
+  & button::before {
     position: absolute;
     left: 9px;
     top: 2px;
@@ -49,25 +48,33 @@
     font-weight: 400;
     content: "+";
     color: var(--secondary);
-
-
   }
-  & button:hover::before{
+  & button:hover::before {
     background-color: var(--secondary);
     color: white;
     content: "+";
-
   }
 }
 
-.filters{
+.filters {
   display: flex;
   gap: 10px;
-  button{
+  margin: 10px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  button {
     all: unset;
     border: 1px solid var(--secondary);
-    padding: .2rem .6rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 1rem;
-
+    cursor: pointer;
+    transition: all 0.6s ;
   }
+  button:hover {
+    background-color: color-mix(in srgb, var(--secondary) 20%, transparent);
+  }
+}
+
+.active-pill{
+  background-color: color-mix(in srgb, var(--secondary) 50%, transparent) !important;
 }
