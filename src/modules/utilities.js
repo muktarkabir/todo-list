@@ -76,7 +76,9 @@ export const viewProject = (project) => {
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
   addTaskDiv.querySelector("button").addEventListener("click", () => {
-    document.querySelector("dialog.task select#project").innerHTML = `<option value=${project.index}>${project.title}</option>`;
+    document.querySelector(
+      "dialog.task select#project"
+    ).innerHTML = `<option value=${project.index}>${project.title}</option>`;
     document.querySelector("dialog.task").showModal();
   });
   filters.addEventListener("click", (e) => {
@@ -86,13 +88,13 @@ export const viewProject = (project) => {
     } else if (e.target.classList.contains("low")) {
       renderSpecificTasks("low");
       showActiveTab("low");
-    }else  if (e.target.classList.contains("medium")) {
+    } else if (e.target.classList.contains("medium")) {
       renderSpecificTasks("medium");
       showActiveTab("medium");
-    }else  if (e.target.classList.contains("high")) {
+    } else if (e.target.classList.contains("high")) {
       renderSpecificTasks("high");
       showActiveTab("high");
-    }else  if (e.target.classList.contains("urgent")) {
+    } else if (e.target.classList.contains("urgent")) {
       renderSpecificTasks("urgent");
       showActiveTab("urgent");
     }
@@ -101,8 +103,8 @@ export const viewProject = (project) => {
   const renderSpecificTasks = (priority) => {
     tasks.innerHTML = "";
     project.allTasks.forEach((task, index) => {
-      if (task.priority == priority) {
-        const renderedTask = taskTile(task,index);
+      if (task.priority == priority && !task.isDone) {
+        const renderedTask = taskTile(task, index);
         tasks.append(renderedTask);
       }
     });
@@ -110,25 +112,27 @@ export const viewProject = (project) => {
   const renderAllTasks = () => {
     tasks.innerHTML = "";
     project.allTasks.forEach((task, index) => {
-      const renderedTask = taskTile(task,index);
-      tasks.append(renderedTask);
+      if (!task.isDone) {
+        const renderedTask = taskTile(task, index);
+        tasks.append(renderedTask);
+      }
     });
   };
-  const showActiveTab = (activeTab)=>{
+  const showActiveTab = (activeTab) => {
     filters.childNodes.forEach((node) => {
       console.log(node);
       if (!node.classList.contains(activeTab)) {
         node.classList.remove("active-pill");
       }
-    })
+    });
     filters.querySelector(`button.${activeTab}`).classList.add("active-pill");
-  }
+  };
   renderAllTasks();
   container.append(heading, filters, tasks, addTaskDiv);
   return container;
 };
 
-export const taskTile = (task,index) => {
+export const taskTile = (task, index) => {
   const { title, description, dueDate, priority } = task;
   const container = createElement({ tagName: "div", className: "task-tile" });
   container.dataset.index = index;
