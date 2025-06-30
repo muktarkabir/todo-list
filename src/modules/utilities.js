@@ -80,13 +80,10 @@ export const viewProject = (project) => {
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
   addTaskDiv.querySelector("button").addEventListener("click", () => {
-    document.querySelector(
-      "dialog.task select#project"
-    ).innerHTML = `<option value=${project.index}>${project.title}</option>`;
+    document.querySelector("dialog.task select#project").innerHTML = `<option value=${project.index}>${project.title}</option>`;
     document.querySelector("dialog.task").showModal();
   });
   filters.addEventListener("click", (e) => {
-    console.log(e.target);
     if (e.target.classList.contains("all")) {
       renderAllTasks();
     } else if (e.target.classList.contains("low")) {
@@ -104,14 +101,15 @@ export const viewProject = (project) => {
     tasks.innerHTML = "";
     project.allTasks.forEach((task, index) => {
       if (task.priority == priority) {
-        const renderedTask = taskTile(task);
+        const renderedTask = taskTile(task,index);
         tasks.append(renderedTask);
       }
     });
   };
   const renderAllTasks = () => {
+    tasks.innerHTML = "";
     project.allTasks.forEach((task, index) => {
-      const renderedTask = taskTile(task);
+      const renderedTask = taskTile(task,index);
       tasks.append(renderedTask);
     });
   };
@@ -120,9 +118,10 @@ export const viewProject = (project) => {
   return container;
 };
 
-export const taskTile = (task) => {
+export const taskTile = (task,index) => {
   const { title, description, dueDate, priority } = task;
   const container = createElement({ tagName: "div", className: "task-tile" });
+  container.dataset.index = index;
   container.style.border = `1px solid ${priorities[priority]}`;
   container.style.borderLeft = `10px solid ${priorities[priority]}`;
   container.style.borderRadius = "8px";
