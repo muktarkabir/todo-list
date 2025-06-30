@@ -71,11 +71,7 @@ export const viewProject = (project) => {
   addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
   const filters = createElement({ tagName: "div", className: "filters" });
-  filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button>
-  <button class="low">Low ${project.lowPriorityTasks.length}</button>
-  <button class="medium">Medium ${project.mediumPriorityTasks.length}</button>
-  <button class="high">High ${project.highPriorityTasks.length}</button>
-  <button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
+  filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button><button class="low">Low ${project.lowPriorityTasks.length}</button><button class="medium">Medium ${project.mediumPriorityTasks.length}</button><button class="high">High ${project.highPriorityTasks.length}</button><button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
@@ -86,14 +82,19 @@ export const viewProject = (project) => {
   filters.addEventListener("click", (e) => {
     if (e.target.classList.contains("all")) {
       renderAllTasks();
+      showActiveTab("all");
     } else if (e.target.classList.contains("low")) {
       renderSpecificTasks("low");
+      showActiveTab("low");
     }else  if (e.target.classList.contains("medium")) {
       renderSpecificTasks("medium");
+      showActiveTab("medium");
     }else  if (e.target.classList.contains("high")) {
       renderSpecificTasks("high");
+      showActiveTab("high");
     }else  if (e.target.classList.contains("urgent")) {
       renderSpecificTasks("urgent");
+      showActiveTab("urgent");
     }
   });
 
@@ -113,6 +114,15 @@ export const viewProject = (project) => {
       tasks.append(renderedTask);
     });
   };
+  const showActiveTab = (activeTab)=>{
+    filters.childNodes.forEach((node) => {
+      console.log(node);
+      if (!node.classList.contains(activeTab)) {
+        node.classList.remove("active-pill");
+      }
+    })
+    filters.querySelector(`button.${activeTab}`).classList.add("active-pill");
+  }
   renderAllTasks();
   container.append(heading, filters, tasks, addTaskDiv);
   return container;
