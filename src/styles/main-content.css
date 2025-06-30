@@ -23,6 +23,7 @@
 
 .add-task-div{
   margin-top: 1rem;
+  width: auto;
   & button{
     all: unset;
     width: 110px;

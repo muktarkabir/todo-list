@@ -43,9 +43,9 @@ export const createAndApppendProject = (title) => {
   projects.push(new Project(title));
   renderProjects();
 };
-export const addTask = ({projectIndex,task})=> {
+export const addTask = ({ projectIndex, task }) => {
   projects[projectIndex].addTask(task);
-}
+};
 
 export const renderProjects = () => {
   domStuff.clearProjects();
@@ -61,9 +61,9 @@ export const renderProjects = () => {
 };
 
 export const viewProject = (project) => {
-  const container = createElement({ tagName: "div",className:"project-div" });
-  const addTaskDiv = createElement({tagName:"div",className:"add-task-div"});
-  addTaskDiv.innerHTML = '<button>Add Task</button>'
+  const container = createElement({ tagName: "div", className: "project-div" });
+  const addTaskDiv = createElement({tagName: "div",className: "add-task-div"});
+  addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
@@ -71,7 +71,11 @@ export const viewProject = (project) => {
     const renderedTask = taskTile(task);
     tasks.append(renderedTask);
   });
-  container.append(heading, tasks,addTaskDiv);
+  addTaskDiv.querySelector("button").addEventListener("click",()=>{
+    document.querySelector("dialog.task select#project").innerHTML = `<option value=${''}>${project.title}</option>`
+    document.querySelector("dialog.task").showModal();
+  });
+  container.append(heading, tasks, addTaskDiv);
 
   return container;
 };
@@ -81,8 +85,8 @@ export const taskTile = (task) => {
   const container = createElement({ tagName: "div", className: "task-tile" });
   container.style.border = `1px solid ${priorities[priority]}`;
   container.style.borderLeft = `10px solid ${priorities[priority]}`;
-  container.style.borderRadius = '8px';
-                         
+  container.style.borderRadius = "8px";
+
   container.innerHTML = `<div class="the-input"><input type ="checkbox"/></div><div><h4>${title}</h4>
                          <p>${description}</p>
                          <p>${dueDate.toDateString()}</p>
@@ -104,7 +108,7 @@ const standoutColors = [
 ];
 const priorities = {
   low: "#4caf50",
-  medium:"#ffca28",
-  high:"#ff5722",
-  urgent:"#d32f2f"
+  medium: "#ffca28",
+  high: "#ff5722",
+  urgent: "#d32f2f",
 };
