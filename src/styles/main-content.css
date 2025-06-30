@@ -3,9 +3,10 @@
 #content {
   width: 80%;
   min-height: 86%;
-  max-height: 86%;
+  height: 100%;
   padding: 0.6rem;
   overflow-y: auto;
+  margin-bottom: 18px;
 }
 
 #content::-webkit-scrollbar {
