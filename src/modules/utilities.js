@@ -71,7 +71,7 @@ export const viewProject = (project) => {
   addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
   const filters = createElement({ tagName: "div", className: "filters" });
-  filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button><button class="low">Low ${project.lowPriorityTasks.length}</button><button class="medium">Medium ${project.mediumPriorityTasks.length}</button><button class="high">High ${project.highPriorityTasks.length}</button><button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
+  filters.innerHTML = `<button class="all">All <span>${project.numberOfTasks}</span></button><button class="low">Low <span>${project.lowPriorityTasks.length}</span></button><button class="medium">Medium <span>${project.mediumPriorityTasks.length}</span></button><button class="high">High <span>${project.highPriorityTasks.length}</span></button><button class="urgent">Urgent <span>${project.urgentPriorityTasks.length}</span></button>`;
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
@@ -83,19 +83,19 @@ export const viewProject = (project) => {
   });
   filters.addEventListener("click", (e) => {
     if (e.target.classList.contains("all")) {
-      renderAllTasks();
+      renderTasks("all");
       showActiveTab("all");
     } else if (e.target.classList.contains("low")) {
-      renderSpecificTasks("low");
+      renderTasks("low");
       showActiveTab("low");
     } else if (e.target.classList.contains("medium")) {
-      renderSpecificTasks("medium");
+      renderTasks("medium");
       showActiveTab("medium");
     } else if (e.target.classList.contains("high")) {
-      renderSpecificTasks("high");
+      renderTasks("high");
       showActiveTab("high");
     } else if (e.target.classList.contains("urgent")) {
-      renderSpecificTasks("urgent");
+      renderTasks("urgent");
       showActiveTab("urgent");
     }
   });
@@ -104,38 +104,40 @@ export const viewProject = (project) => {
     if (e.target instanceof HTMLInputElement) {
       let taskIndex = e.target.parentElement.parentElement.dataset.index;
       project.allTasks[taskIndex].toggleDone();
-      console.log(project.allTasks[taskIndex], project.numberOfCompletedTasks);
-      filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button><button class="low">Low ${project.lowPriorityTasks.length}</button><button class="medium">Medium ${project.mediumPriorityTasks.length}</button><button class="high">High ${project.highPriorityTasks.length}</button><button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
-      filters.childNodes.forEach((childNode) => {
+      // console.log(project.allTasks[taskIndex], project.numberOfCompletedTasks);
+      filters.querySelectorAll("button").forEach((childNode) => {
+        console.log(childNode); 
         if (childNode.classList.contains("active-pill")) {
-          if (childNode.classList[0] == "all") {
-            renderAllTasks();
-          } else {
-            renderSpecificTasks(childNode.classList[0]);
-          }
+          console.log(childNode.classList);
+          renderTasks(childNode.classList[0]);
           showActiveTab(childNode.classList[0]);
+          filters.querySelector("button.all span").innerHTML = `${project.numberOfTasks}`;
+          filters.querySelector("button.low span").innerHTML = `${project.lowPriorityTasks.length}`;
+          filters.querySelector("button.medium span").innerHTML = `${project.mediumPriorityTasks.length}`;
+          filters.querySelector("button.high span").innerHTML = `${project.mediumPriorityTasks.length}`;
+          filters.querySelector("button.urgent span").innerHTML = `${project.urgentPriorityTasks.length}`;
         }
       });
     }
   });
 
-  const renderSpecificTasks = (priority) => {
+  const renderTasks = (priority) => {
     tasks.innerHTML = "";
-    project.allTasks.forEach((task, index) => {
-      if (task.priority == priority && !task.isDone) {
-        const renderedTask = taskTile(task, index);
-        tasks.append(renderedTask);
-      }
-    });
-  };
-  const renderAllTasks = () => {
-    tasks.innerHTML = "";
-    project.allTasks.forEach((task, index) => {
-      if (!task.isDone) {
-        const renderedTask = taskTile(task, index);
-        tasks.append(renderedTask);
-      }
-    });
+    if (priority == "all") {
+      project.allTasks.forEach((task, index) => {
+        if (!task.isDone) {
+          const renderedTask = taskTile(task, index);
+          tasks.append(renderedTask);
+        }
+      });
+    } else {
+      project.allTasks.forEach((task, index) => {
+        if (task.priority == priority && !task.isDone) {
+          const renderedTask = taskTile(task, index);
+          tasks.append(renderedTask);
+        }
+      });
+    }
   };
   const showActiveTab = (activeTab) => {
     filters.childNodes.forEach((node) => {
@@ -146,7 +148,7 @@ export const viewProject = (project) => {
     });
     filters.querySelector(`button.${activeTab}`).classList.add("active-pill");
   };
-  renderAllTasks();
+  renderTasks("all");
   container.append(heading, filters, tasks, addTaskDiv);
   return container;
 };
