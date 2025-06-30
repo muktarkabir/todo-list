@@ -60,3 +60,14 @@
   }
 }
 
+.filters{
+  display: flex;
+  gap: 10px;
+  button{
+    all: unset;
+    border: 1px solid var(--secondary);
+    padding: .2rem .6rem;
+    border-radius: 1rem;
+
+  }
+}

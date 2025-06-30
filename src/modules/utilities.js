@@ -63,20 +63,27 @@ export const renderProjects = () => {
 
 export const viewProject = (project) => {
   const container = createElement({ tagName: "div", className: "project-div" });
-  const addTaskDiv = createElement({tagName: "div",className: "add-task-div"});
+  const addTaskDiv = createElement({
+    tagName: "div",
+    className: "add-task-div",
+  });
   addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
+  const filters = createElement({ tagName: "div", className: "filters" });
+  filters.innerHTML = `<button>All ${project.allTasks.length}</button><button>Low ${project.numberOfTasks}</button><button>Medium ${project.allTasks.length}</button><button>High ${project.allTasks.length}</button><button>Urgent ${project.allTasks.length}</button>`;
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
   project.allTasks.forEach((task, index) => {
     const renderedTask = taskTile(task);
     tasks.append(renderedTask);
   });
-  addTaskDiv.querySelector("button").addEventListener("click",()=>{
-    document.querySelector("dialog.task select#project").innerHTML = `<option value=${project.index}>${project.title}</option>`
+  addTaskDiv.querySelector("button").addEventListener("click", () => {
+    document.querySelector(
+      "dialog.task select#project"
+    ).innerHTML = `<option value=${project.index}>${project.title}</option>`;
     document.querySelector("dialog.task").showModal();
   });
-  container.append(heading, tasks, addTaskDiv);
+  container.append(heading, filters, tasks, addTaskDiv);
 
   return container;
 };
