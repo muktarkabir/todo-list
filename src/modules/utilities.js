@@ -100,6 +100,25 @@ export const viewProject = (project) => {
     }
   });
 
+  tasks.addEventListener("click", (e) => {
+    if (e.target instanceof HTMLInputElement) {
+      let taskIndex = e.target.parentElement.parentElement.dataset.index;
+      project.allTasks[taskIndex].toggleDone();
+      console.log(project.allTasks[taskIndex], project.numberOfCompletedTasks);
+      filters.innerHTML = `<button class="all">All ${project.numberOfTasks}</button><button class="low">Low ${project.lowPriorityTasks.length}</button><button class="medium">Medium ${project.mediumPriorityTasks.length}</button><button class="high">High ${project.highPriorityTasks.length}</button><button class="urgent">Urgent ${project.urgentPriorityTasks.length}</button>`;
+      filters.childNodes.forEach((childNode) => {
+        if (childNode.classList.contains("active-pill")) {
+          if (childNode.classList[0] == "all") {
+            renderAllTasks();
+          } else {
+            renderSpecificTasks(childNode.classList[0]);
+          }
+          showActiveTab(childNode.classList[0]);
+        }
+      });
+    }
+  });
+
   const renderSpecificTasks = (priority) => {
     tasks.innerHTML = "";
     project.allTasks.forEach((task, index) => {

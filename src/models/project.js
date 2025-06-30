@@ -17,19 +17,20 @@ export class Project {
   }
 
   get numberOfTasks() {
-    return this.#tasks.length;
+    return this.#tasks.filter((task) => !task.isDone).length;
+
   }
   get lowPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "low");
+    return this.#tasks.filter((task,index) => task.priority == "low" && !task.isDone);
   }
   get mediumPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "medium");
+    return this.#tasks.filter((task,index) => task.priority == "medium" && !task.isDone);
   }
   get highPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "high");
+    return this.#tasks.filter((task,index) => task.priority == "high" && !task.isDone);
   }
   get urgentPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "urgent");
+    return this.#tasks.filter((task,index) => task.priority == "urgent" && !task.isDone);
   }
 
   addTask(task) {
