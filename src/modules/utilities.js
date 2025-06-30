@@ -79,18 +79,44 @@ export const viewProject = (project) => {
   const tasks = createElement({ tagName: "div" });
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
-  project.allTasks.forEach((task, index) => {
-    const renderedTask = taskTile(task);
-    tasks.append(renderedTask);
-  });
   addTaskDiv.querySelector("button").addEventListener("click", () => {
     document.querySelector(
       "dialog.task select#project"
     ).innerHTML = `<option value=${project.index}>${project.title}</option>`;
     document.querySelector("dialog.task").showModal();
   });
-  container.append(heading, filters, tasks, addTaskDiv);
+  filters.addEventListener("click", (e) => {
+    console.log(e.target);
+    if (e.target.classList.contains("all")) {
+      renderAllTasks();
+    } else if (e.target.classList.contains("low")) {
+      renderSpecificTasks("low");
+    }else  if (e.target.classList.contains("medium")) {
+      renderSpecificTasks("medium");
+    }else  if (e.target.classList.contains("high")) {
+      renderSpecificTasks("high");
+    }else  if (e.target.classList.contains("urgent")) {
+      renderSpecificTasks("urgent");
+    }
+  });
 
+  const renderSpecificTasks = (priority) => {
+    tasks.innerHTML = "";
+    project.allTasks.forEach((task, index) => {
+      if (task.priority == priority) {
+        const renderedTask = taskTile(task);
+        tasks.append(renderedTask);
+      }
+    });
+  };
+  const renderAllTasks = () => {
+    project.allTasks.forEach((task, index) => {
+      const renderedTask = taskTile(task);
+      tasks.append(renderedTask);
+    });
+  };
+  renderAllTasks();
+  container.append(heading, filters, tasks, addTaskDiv);
   return container;
 };
 
