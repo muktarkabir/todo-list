@@ -5,10 +5,10 @@ export class Project {
   #tasks = [];
   #index;
 
-  set index(value){
+  set index(value) {
     this.#index = value;
   }
-  get index(){
+  get index() {
     return this.#index;
   }
 
@@ -18,6 +18,18 @@ export class Project {
 
   get numberOfTasks() {
     return this.#tasks.length;
+  }
+  get lowPriorityTasks() {
+    return this.#tasks.filter((task) => task.priority == "low");
+  }
+  get mediumPriorityTasks() {
+    return this.#tasks.filter((task) => task.priority == "medium");
+  }
+  get highPriorityTasks() {
+    return this.#tasks.filter((task) => task.priority == "high");
+  }
+  get urgentPriorityTasks() {
+    return this.#tasks.filter((task) => task.priority == "urgent");
   }
 
   addTask(task) {
@@ -34,15 +46,15 @@ export class Project {
     this.#tasks.splice(taskIndex, 1);
   }
 
-  get completedTasks(){
-    return this.#tasks.filter((task)=> task.isDone);
+  get completedTasks() {
+    return this.#tasks.filter((task) => task.isDone);
   }
 
-  get numberOfCompletedTasks(){
-    return this.#tasks.filter((task)=> task.isDone).length;
+  get numberOfCompletedTasks() {
+    return this.#tasks.filter((task) => task.isDone).length;
   }
 
-  toString(){
-    return `Project name:${this.title}, Tasks:[${this.#tasks}]`
+  toString() {
+    return `Project name:${this.title}, Tasks:[${this.#tasks}]`;
   }
 }
