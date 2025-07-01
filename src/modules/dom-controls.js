@@ -1,6 +1,7 @@
 import { projects } from "../index.js";
-import { createAndApppendProject, viewProject, addTask } from "./utilities";
+import { createAndApppendProject,  addTask } from "./utilities";
 import { Task } from "../models/task.js";
+import {viewProject} from "./project-view.js";
 
 export class DomManipulations {
   constructor() {

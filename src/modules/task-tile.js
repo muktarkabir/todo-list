@@ -1,3 +1,9 @@
+import { createElement } from "./utilities";
+import { priorities } from "./utilities.js";
+import "../styles/task-tile.css";
+
+
+
 export const taskTile = (task, index) => {
     const { title, description, dueDate, priority } = task;
     const container = createElement({ tagName: "div", className: "task-tile" });
