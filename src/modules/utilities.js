@@ -86,7 +86,7 @@ export const showEditTaskDialog = (project, taskIndex) => {
                 required rows="10" cols="30"
                 maxlength="150">${description}</textarea>
                 <label for="due-date">Date</label>
-                <input type="date" name="due-date" id="due-date" value='${dueDate}' required/>
+                <input type="date" name="due-date" id="due-date" value='${dueDate.toISOString().substr(0, 10)}' required/>
                 <label for="priority">Priority</label>
                 <select name="priority" id="priority">
                 <option value="low">Low</option>
@@ -97,7 +97,7 @@ export const showEditTaskDialog = (project, taskIndex) => {
               </div>
               <div class="buttons">
                 <button type="button" class="cancel">Cancel</button>
-                <button type="submit" class="add-task">Save</button>
+                <button type="submit" class="add-task edit-task">Save</button>
               </div>
             </form>`;
 
@@ -105,7 +105,9 @@ export const showEditTaskDialog = (project, taskIndex) => {
     if (option.value == priority){
       option.selected = true;
     }
-  })          
+  });
+  editTaskDialog.querySelector(".cancel").addEventListener("click",()=> editTaskDialog.close());
+  editTaskDialog.showModal();         
 };
 
 
