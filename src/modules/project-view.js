@@ -44,28 +44,13 @@ export const viewProject = (project) => {
     if (e.target instanceof HTMLInputElement) {
       let taskIndex = e.target.parentElement.parentElement.dataset.index;
       project.allTasks[taskIndex].toggleDone();
-      filters.querySelectorAll("button").forEach((childNode) => {
-        if (childNode.classList.contains("active-pill")) {
-          renderTasks(childNode.classList[0]);
-          filters.querySelector(
-            "button.all span"
-          ).innerHTML = `${project.numberOfTasks}`;
-          filters.querySelector(
-            "button.low span"
-          ).innerHTML = `${project.lowPriorityTasks.length}`;
-          filters.querySelector(
-            "button.medium span"
-          ).innerHTML = `${project.mediumPriorityTasks.length}`;
-          filters.querySelector(
-            "button.high span"
-          ).innerHTML = `${project.highPriorityTasks.length}`;
-          filters.querySelector(
-            "button.urgent span"
-          ).innerHTML = `${project.urgentPriorityTasks.length}`;
-        }
-      });
+      updateVisuals();
     } else if (e.target instanceof SVGElement) {
-      console.log(e.target);
+      let taskIndex = e.target.parentElement.parentElement.parentElement.dataset.index;
+      if (e.target.classList.contains("delete")) {
+        project.deleteTask(taskIndex);
+      updateVisuals();
+      }
     }
   });
 
@@ -95,6 +80,29 @@ export const viewProject = (project) => {
     });
     filters.querySelector(`button.${activeTab}`).classList.add("active-pill");
   };
+
+  const updateVisuals = ()=>{
+    filters.querySelectorAll("button").forEach((childNode) => {
+        if (childNode.classList.contains("active-pill")) {
+          renderTasks(childNode.classList[0]);
+          filters.querySelector(
+            "button.all span"
+          ).innerHTML = `${project.numberOfTasks}`;
+          filters.querySelector(
+            "button.low span"
+          ).innerHTML = `${project.lowPriorityTasks.length}`;
+          filters.querySelector(
+            "button.medium span"
+          ).innerHTML = `${project.mediumPriorityTasks.length}`;
+          filters.querySelector(
+            "button.high span"
+          ).innerHTML = `${project.highPriorityTasks.length}`;
+          filters.querySelector(
+            "button.urgent span"
+          ).innerHTML = `${project.urgentPriorityTasks.length}`;
+        }
+      });
+  }
   renderTasks("all");
   container.append(heading, filters, tasks, addTaskDiv);
   return container;
