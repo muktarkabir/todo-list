@@ -1,14 +1,21 @@
 export class Task {
-  constructor({ title, description, dueDate, priority, isDone = false, dateAdded, dateCompleted }) {
+  constructor({ title, description, dueDate, priority, isDone = false }) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.isDone = isDone;
-    this.dateAdded = dateAdded;
   }
+  dateAdded;
+  dateCompleted;
 
   toggleDone() {
     this.isDone = !this.isDone;
+  }
+  set dateAdded(date) {
+    this.dateAdded = new Date(date);
+  }
+  set dateCompleted(date) {
+    this.dateCompleted = new Date(date);
   }
 }
