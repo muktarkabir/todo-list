@@ -148,20 +148,6 @@ export const viewProject = (project) => {
   return container;
 };
 
-export const taskTile = (task, index) => {
-  const { title, description, dueDate, priority } = task;
-  const container = createElement({ tagName: "div", className: "task-tile" });
-  container.dataset.index = index;
-  container.style.border = `1px solid ${priorities[priority]}`;
-  container.style.borderLeft = `10px solid ${priorities[priority]}`;
-  container.style.borderRadius = "8px";
-
-  container.innerHTML = `<div class="the-input"><input type ="checkbox"/></div><div><h4>${title}</h4>
-                         <p>${description}</p>
-                         <p>${dueDate.toDateString()}</p>
-                         </div><div class="buttons"><button>Edit</button><button>Delete</button></div>`;
-  return container;
-};
 
 const standoutColors = [
   "#FF5733", // bright red-orange
