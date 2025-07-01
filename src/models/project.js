@@ -47,7 +47,7 @@ export class Project {
     this.#tasks.splice(taskIndex, 1);
   }
 
-  editTask(taskIndex,{newTitle,newDescription,newDueDate,newPriority}){
+  editTask({taskIndex,newTitle,newDescription,newDueDate,newPriority}){
     if (newTitle) this.#tasks[taskIndex].title = newTitle;
     if (newDescription) this.#tasks[taskIndex].description = newDescription;
     if (newDueDate) this.#tasks[taskIndex].dueDate = newDueDate;

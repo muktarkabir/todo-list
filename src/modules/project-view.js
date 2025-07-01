@@ -1,6 +1,7 @@
 import { taskTile } from "./task-tile";
-import { createElement } from "./utilities";
+import { createElement, showEditTaskDialog } from "./utilities";
 import "../styles/main-content.css";
+import { editTaskDialog } from "./dialogs";
 
 export const viewProject = (project) => {
   const container = createElement({ tagName: "div", className: "project-div" });
@@ -51,6 +52,26 @@ export const viewProject = (project) => {
       if (e.target.classList.contains("delete")) {
         project.deleteTask(taskIndex);
         updateVisuals();
+      } else if (e.target.classList.contains("edit")) {
+        showEditTaskDialog(project, taskIndex);
+        editTaskDialog
+        .querySelector(".edit-task")
+        .addEventListener("click", () => {
+              let title = editTaskDialog.querySelector("#title").value;
+              let description = editTaskDialog.querySelector("#description").value;
+              let dueDate = editTaskDialog.querySelector("#due-date").value;
+              let priority = editTaskDialog.querySelector("select#priority");
+            if (title && description && dueDate) {           
+              project.editTask({
+                taskIndex,
+                newTitle: title.trim(),
+                newDescription: description.trim(),
+                newDueDate: new Date(dueDate),
+                newPriority: priority.options[priority.selectedIndex].value,
+              });
+              updateVisuals();
+            }
+          });
       }
     }
   });

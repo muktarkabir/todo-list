@@ -97,7 +97,7 @@ export const showEditTaskDialog = (project, taskIndex) => {
               </div>
               <div class="buttons">
                 <button type="button" class="cancel">Cancel</button>
-                <button type="submit" class="add-task edit-task">Save</button>
+                <button type="submit" class="edit-task">Save</button>
               </div>
             </form>`;
 
