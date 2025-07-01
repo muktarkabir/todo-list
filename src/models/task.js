@@ -13,9 +13,9 @@ export class Task {
     this.isDone = !this.isDone;
   }
   set dateAdded(date) {
-    this.dateAdded = new Date(date);
+    this.dateAdded = date;
   }
   set dateCompleted(date) {
-    this.dateCompleted = new Date(date);
+    this.dateCompleted = date;
   }
 }

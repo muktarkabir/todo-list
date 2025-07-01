@@ -1,12 +1,25 @@
+@import "../global-styles.css";
+
 .task-tile {
   padding: 0.2rem 0.4rem;
   margin-bottom: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  position: relative;
 
   .the-input {
-    align-self: self-start;
+    align-self: flex-start;
+  }
+
+  & .time{
+    margin-left: auto;
+    align-self: flex-end;
+    position: absolute;
+    right: 8px;
+    bottom: 2px;
+    font-size: .8rem;
+    color: var(--text-medium);
   }
 
   & .buttons {
@@ -14,6 +27,8 @@
     margin-left: auto;
     margin-right: 0.4rem;
     align-self: start;
+    border: 1px solid blue;
+    z-index: 2;
     & button {
       all: unset;
       cursor: pointer;

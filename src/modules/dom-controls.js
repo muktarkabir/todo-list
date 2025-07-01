@@ -82,6 +82,7 @@ export const domStuff = (() => {
         dueDate: new Date(newTaskDuedate.valueAsDate),
         priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
       });
+      newTask.dateAdded = new Date();
       addTask({
         projectIndex: Number.parseInt(selectedProject),
         task: newTask,

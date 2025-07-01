@@ -72,19 +72,9 @@ export const showEditTaskDialog = (project, taskIndex) => {
                 <h3>Edit task</h3>
                 <hr />
                 <label for="title">Title</label><br />
-                <input
-                  type="text"
-                  name="task-name"
-                  id="title"
-                  required
-                  maxlength="50"
-                  value= '${title}'
-                />
+                <input type="text" name="task-name" id="title" required maxlength="50" value= '${title}'/>
                 <label for="description">Description</label><br />
-                <textarea name="task-description"
-                id="description"
-                required rows="10" cols="30"
-                maxlength="150">${description}</textarea>
+                <textarea name="task-description" id="description" required rows="10" cols="30" maxlength="150">${description}</textarea>
                 <label for="due-date">Date</label>
                 <input type="date" name="due-date" id="due-date" value='${dueDate.toISOString().substr(0, 10)}' required/>
                 <label for="priority">Priority</label>
