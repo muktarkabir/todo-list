@@ -2,6 +2,7 @@ import { projects } from "../index.js";
 import { createAndApppendProject,  addTask } from "./utilities";
 import { Task } from "../models/task.js";
 import {viewProject} from "./project-view.js";
+import { addProjectDialog,addTaskDialog } from "./dialogs.js";
 
 export class DomManipulations {
   constructor() {
@@ -21,7 +22,6 @@ export const domStuff = (() => {
   const main = document.querySelector("main");
   const mainContent = main.querySelector("#content");
   const addProjectOpenButton = document.querySelector(".heading p");
-  const addProjectDialog = document.querySelector("dialog.project");
   const addProjectForm = addProjectDialog.querySelector("form");
   const newProjectName = addProjectDialog.querySelector("input");
   const addProjectCancelButton = addProjectDialog.querySelector(".cancel");
