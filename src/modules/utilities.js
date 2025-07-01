@@ -1,5 +1,6 @@
 import { projects } from "../index.js";
 import { Project } from "../models/project.js";
+import { editTaskDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";
 
 export function createProjectCard({ titleText, color, index }) {
@@ -58,6 +59,53 @@ export const renderProjects = () => {
     });
     domStuff.apppendProject(renderedProject);
   });
+};
+
+export const showEditTaskDialog = (project, taskIndex) => {
+  let task = projects[project.index].allTasks[taskIndex];
+  let title = task.title;
+  let description = task.description;
+  let dueDate = task.dueDate;
+  let priority = task.priority;
+  editTaskDialog.innerHTML = `<form action="#" method="dialog">
+              <div>
+                <h3>Edit task</h3>
+                <hr />
+                <label for="title">Title</label><br />
+                <input
+                  type="text"
+                  name="task-name"
+                  id="title"
+                  required
+                  maxlength="50"
+                  value= '${title}'
+                />
+                <label for="description">Description</label><br />
+                <textarea name="task-description"
+                id="description"
+                required rows="10" cols="30"
+                maxlength="150">${description}</textarea>
+                <label for="due-date">Date</label>
+                <input type="date" name="due-date" id="due-date" value='${dueDate}' required/>
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="urgent">Urgent</option>
+              </select>
+              </div>
+              <div class="buttons">
+                <button type="button" class="cancel">Cancel</button>
+                <button type="submit" class="add-task">Save</button>
+              </div>
+            </form>`;
+
+  editTaskDialog.querySelector("#priority").querySelectorAll("option").forEach((option)=>{
+    if (option.value == priority){
+      option.selected = true;
+    }
+  })          
 };
 
 

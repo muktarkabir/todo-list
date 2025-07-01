@@ -1,8 +1,8 @@
 import { projects } from "../index.js";
-import { createAndApppendProject,  addTask } from "./utilities";
+import { createAndApppendProject, addTask } from "./utilities";
 import { Task } from "../models/task.js";
-import {viewProject} from "./project-view.js";
-import { addProjectDialog,addTaskDialog } from "./dialogs.js";
+import { viewProject } from "./project-view.js";
+import { addProjectDialog, addTaskDialog } from "./dialogs.js";
 
 export class DomManipulations {
   constructor() {
@@ -28,9 +28,10 @@ export const domStuff = (() => {
   const addProjectConfirmButton =
     addProjectDialog.querySelector(".add-project");
 
-  const addTaskDialog = document.querySelector("dialog.task");
   const newTaskTitle = addTaskDialog.querySelector("input#title");
-  const newTaskDescription = addTaskDialog.querySelector("textarea#description");
+  const newTaskDescription = addTaskDialog.querySelector(
+    "textarea#description"
+  );
   const newTaskDuedate = addTaskDialog.querySelector("input#due-date");
   const newTaskPriority = addTaskDialog.querySelector("select#priority");
   const addTaskProjectDropdown = addTaskDialog.querySelector("select#project");
@@ -72,20 +73,24 @@ export const domStuff = (() => {
       addTaskProjectDropdown.selectedIndex != -1
     ) {
       e.preventDefault();
-      let selectedProject = addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex].value;
+      let selectedProject =
+        addTaskProjectDropdown.options[addTaskProjectDropdown.selectedIndex]
+          .value;
       let newTask = new Task({
         title: newTaskTitle.value.trim(),
         description: newTaskDescription.value.trim(),
         dueDate: new Date(newTaskDuedate.valueAsDate),
         priority: newTaskPriority.options[newTaskPriority.selectedIndex].value,
-      }); 
-      addTask({ projectIndex: Number.parseInt(selectedProject), task:newTask });
+      });
+      addTask({
+        projectIndex: Number.parseInt(selectedProject),
+        task: newTask,
+      });
       mainContent.replaceChildren(
         viewProject(projects[Number.parseInt(selectedProject)])
       );
-    addTaskDialog.close();
-    addTaskDialog.querySelector("form").reset();
-
+      addTaskDialog.close();
+      addTaskDialog.querySelector("form").reset();
     }
   });
   projectsContainer.addEventListener("click", (e) => {

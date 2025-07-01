@@ -61,4 +61,11 @@ addTaskDialog.innerHTML = `<form action="#" method="dialog">
           <button type="submit" class="add-task">Create</button>
         </div>
       </form>`;
-      document.body.append(addProjectDialog,addTaskDialog);
+
+export const editTaskDialog = createElement({
+  tagName: "dialog",
+  className: "task",
+});
+
+
+document.body.append(addProjectDialog, addTaskDialog,editTaskDialog);
