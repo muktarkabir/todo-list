@@ -29,5 +29,3 @@ projects[0].addTask(task2);
 projects[0].addTask(task3);
 
 projects[0].addTask(task4);
-
-projects[0].editTask({taskIndex:0,newTitle:"This is a new title"});
