@@ -13,11 +13,13 @@
   }
 
   & .time{
-    margin-left: auto;
-    align-self: flex-end;
     position: absolute;
     right: 8px;
     bottom: 2px;
+    font-size: .8rem;
+    color: var(--text-medium);
+  }
+  & .due{
     font-size: .8rem;
     color: var(--text-medium);
   }
@@ -27,8 +29,6 @@
     margin-left: auto;
     margin-right: 0.4rem;
     align-self: start;
-    border: 1px solid blue;
-    z-index: 2;
     & button {
       all: unset;
       cursor: pointer;
