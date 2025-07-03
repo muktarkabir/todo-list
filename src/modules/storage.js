@@ -1,5 +1,9 @@
 import { Project } from "../models/project.js";
 import { Task } from "../models/task.js";
+import { domStuff } from "./dom-controls.js";
+
+export const noUserName = ()=> !localStorage.getItem("userName");
+domStuff.setUserName(localStorage.getItem("userName"));
 
 export const projects = [new Project("Personal")];
 //Giving the project an index property

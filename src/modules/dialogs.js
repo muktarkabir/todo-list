@@ -47,10 +47,21 @@ addTaskDialog.innerHTML = `<form action="#" method="dialog">
         </div>
       </form>`;
 
-export const editTaskDialog = createElement({
-  tagName: "dialog",
-  className: "task",
-});
+export const editTaskDialog = createElement({tagName: "dialog",className: "task",});
+
+export const userNameDialog = createElement({tagName:"dialog",className:"project"});
+userNameDialog.innerHTML = `<form action="#" method="dialog">
+<div>
+  <h3>Add Username</h3>
+  <hr />
+  <label for="user-name">Username</label><br />
+  <input type="text" name="user-name" id="user-name" required maxlength="10"/>
+</div>
+<div class="buttons">
+  <button type="submit" class="add-username">Add</button>
+</div>
+</form>`;
 
 
-document.body.append(addProjectDialog, addTaskDialog,editTaskDialog);
+
+document.body.append(addProjectDialog, addTaskDialog,editTaskDialog,userNameDialog);

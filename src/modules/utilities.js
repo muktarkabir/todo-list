@@ -1,6 +1,6 @@
 import { projects } from "./storage.js";
 import { Project } from "../models/project.js";
-import { editTaskDialog } from "./dialogs.js";
+import { editTaskDialog,userNameDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";
 
 export function createProjectCard({ titleText, color, index }) {
@@ -58,6 +58,20 @@ export const renderProjects = () => {
       index: index,
     });
     domStuff.apppendProject(renderedProject);
+  });
+};
+
+export const addUserName = () => {
+  userNameDialog.showModal();
+  let userNameInput = userNameDialog.querySelector("input#user-name");
+  const addUserNameButton = userNameDialog.querySelector("button.add-username");
+  addUserNameButton.addEventListener("click", (e) => {
+    console.log("clickde");
+    if (userNameInput.value) {
+      localStorage.setItem("userName",userNameInput.value.trim());
+      console.log(localStorage.getItem("userName"));  
+      domStuff.setUserName(localStorage.getItem("userName"));  
+    }
   });
 };
 

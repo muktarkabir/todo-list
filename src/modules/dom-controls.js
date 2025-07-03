@@ -2,7 +2,7 @@ import { projects } from "./storage.js";
 import { createAndApppendProject, addTask } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
-import { addProjectDialog, addTaskDialog } from "./dialogs.js";
+import { addProjectDialog, addTaskDialog, userNameDialog } from "./dialogs.js";
 
 export class DomManipulations {
   constructor() {
@@ -17,6 +17,7 @@ export class DomManipulations {
 
 export const domStuff = (() => {
   const sidebar = document.querySelector("aside");
+  const userName = sidebar.querySelector(".top h3");
   const featuresContainer = sidebar.querySelector("div.features");
   const projectsContainer = sidebar.querySelector(".projects");
   const main = document.querySelector("main");
@@ -130,11 +131,16 @@ export const domStuff = (() => {
       addTaskProjectDropdown.add(new Option(project.title, project.index));
     });
   };
+  const setUserName = (name)=>{
+  userName.textContent = `${localStorage.getItem("userName")}`;
+
+  }
 
   return {
     apppendProject,
     clearProjects,
     updateNumberOfProjects,
     addProjectsToDropdown,
+    setUserName
   };
 })();
