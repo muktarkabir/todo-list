@@ -1,4 +1,4 @@
-import { projects } from "../index.js";
+import { projects } from "./storage.js";
 import { Project } from "../models/project.js";
 import { editTaskDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";

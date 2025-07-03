@@ -1,6 +1,5 @@
-import { createElement } from "./utilities";
-import { priorities } from "./utilities.js";
-import { format, formatDistanceToNow,formatDistance } from "date-fns";
+import { createElement, priorities } from "./utilities.js";
+import { format, formatDistanceToNow } from "date-fns";
 import "../styles/task-tile.css";
 
 export const taskTile = (task, index) => {
@@ -13,7 +12,9 @@ export const taskTile = (task, index) => {
 
   container.innerHTML = `<div class="the-input"><input type ="checkbox"/></div><div><h4>${title}</h4>
                            <p>${description}</p>
-                           <p class="due">due ${formatDistanceToNow(dueDate,{addSuffix:true})} • ${format(dueDate,'MM/dd')} </p>
+                           <p class="due">due ${formatDistanceToNow(dueDate, {
+                             addSuffix: true,
+                           })} • ${format(dueDate, "MM/dd")} </p>
                            </div>
                             <p class="time">Added ${formatDistanceToNow(
                               dateAdded,

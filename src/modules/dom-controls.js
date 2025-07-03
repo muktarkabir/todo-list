@@ -1,5 +1,5 @@
-import { projects } from "../index.js";
-import { createAndApppendProject, addTask } from "./utilities";
+import { projects } from "./storage.js";
+import { createAndApppendProject, addTask } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
 import { addProjectDialog, addTaskDialog } from "./dialogs.js";
@@ -96,7 +96,6 @@ export const domStuff = (() => {
   });
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
-      console.log(e.target);
       mainContent.replaceChildren(
         viewProject(projects[Number.parseInt(e.target.dataset.index)])
       );

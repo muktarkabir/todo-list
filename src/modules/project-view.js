@@ -1,7 +1,7 @@
-import { taskTile } from "./task-tile";
-import { createElement, showEditTaskDialog } from "./utilities";
+import { taskTile } from "./task-tile.js";
+import { createElement, showEditTaskDialog } from "./utilities.js";
 import "../styles/main-content.css";
-import { editTaskDialog } from "./dialogs";
+import { editTaskDialog } from "./dialogs.js";
 
 export const viewProject = (project) => {
   const container = createElement({ tagName: "div", className: "project-div" });
