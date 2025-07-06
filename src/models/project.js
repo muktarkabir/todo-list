@@ -2,68 +2,80 @@ export class Project {
   constructor(title) {
     this.title = title;
   }
-  #tasks = [];
-  #index;
+  tasks = [];
+  index;
 
   set index(value) {
-    this.#index = value;
+    this.index = value;
   }
   get index() {
-    return this.#index;
+    return this.index;
   }
 
   get allTasks() {
-    return this.#tasks;
+    return this.tasks;
   }
 
   get numberOfTasks() {
-    return this.#tasks.filter((task) => !task.isDone).length;
-
+    return this.tasks.filter((task) => !task.isDone).length;
   }
   get lowPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "low" && !task.isDone);
+    return this.tasks.filter(
+      (task, index) => task.priority == "low" && !task.isDone
+    );
   }
   get mediumPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "medium" && !task.isDone);
+    return this.tasks.filter(
+      (task, index) => task.priority == "medium" && !task.isDone
+    );
   }
   get highPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "high" && !task.isDone);
+    return this.tasks.filter(
+      (task, index) => task.priority == "high" && !task.isDone
+    );
   }
   get urgentPriorityTasks() {
-    return this.#tasks.filter((task,index) => task.priority == "urgent" && !task.isDone);
+    return this.tasks.filter(
+      (task, index) => task.priority == "urgent" && !task.isDone
+    );
   }
 
   addTask(task) {
-    this.#tasks.push(task);
+    this.tasks.push(task);
   }
 
-  addMultipleTasks(tasks) {
-    tasks.forEach((task) => {
-      this.#tasks.push(task);
-    });
+  addMultipleTasks(...tasks) {
+    this.tasks.push(...tasks);
   }
 
   deleteTask(taskIndex) {
-    this.#tasks.splice(taskIndex, 1);
+    this.tasks.splice(taskIndex, 1);
   }
 
-  editTask({taskIndex,newTitle,newDescription,newDueDate,newPriority}){
-    if (newTitle) this.#tasks[taskIndex].title = newTitle;
-    if (newDescription) this.#tasks[taskIndex].description = newDescription;
-    if (newDueDate) this.#tasks[taskIndex].dueDate = newDueDate;
-    if (newPriority) this.#tasks[taskIndex].priority = newPriority;
-    
+  editTask({ taskIndex, newTitle, newDescription, newDueDate, newPriority }) {
+    if (newTitle) this.tasks[taskIndex].title = newTitle;
+    if (newDescription) this.tasks[taskIndex].description = newDescription;
+    if (newDueDate) this.tasks[taskIndex].dueDate = newDueDate;
+    if (newPriority) this.tasks[taskIndex].priority = newPriority;
   }
 
   get completedTasks() {
-    return this.#tasks.filter((task) => task.isDone);
+    return this.tasks.filter((task) => task.isDone);
   }
 
   get numberOfCompletedTasks() {
-    return this.#tasks.filter((task) => task.isDone).length;
+    return this.tasks.filter((task) => task.isDone).length;
   }
 
   toString() {
-    return `Project name:${this.title}, Tasks:[${this.#tasks}]`;
+    return `Project name:${this.title}, Tasks:[${this.tasks}]`;
   }
+}
+
+export class ProjectWrapper extends Project{
+  constructor({title,index,tasks}){
+    super(title);
+    this.index = index;
+    this.tasks = tasks;
+  };
 }
