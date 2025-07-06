@@ -2,12 +2,9 @@ import { Project } from "../models/project.js";
 import { Task } from "../models/task.js";
 import { domStuff } from "./dom-controls.js";
 
-export const noUserName = ()=> !localStorage.getItem("userName");
+export const noUserName = () => !localStorage.getItem("userName");
 domStuff.setUserName(localStorage.getItem("userName"));
 
-export const projects = [new Project("Personal")];
-//Giving the project an index property
-projects.at(-1).index = projects.length - 1;
 let task = new Task({
   title: "Stuff",
   description: "Do a bunch of stuff",
@@ -39,9 +36,31 @@ let task4 = new Task({
   dueDate: new Date("2025-07-10"),
 });
 task4.dateAdded = new Date();
-projects[0].addTask(task);
-projects[0].addTask(task2);
 
-projects[0].addTask(task3);
+if (!localStorage.getItem("projects"))
+  localStorage.setItem("projects", JSON.stringify([]));
 
-projects[0].addTask(task4);
+
+
+export class Storage {
+  static saveNewProject(title){
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    projects.push(new Project(title));
+    projects.at(-1).index = projects.length - 1;
+    localStorage.setItem("projects",JSON.stringify(projects));
+  }
+  static getSavedProjects(){
+    return JSON.parse(localStorage.getItem("projects"));
+  }
+
+  static addNewTask(projectIndex,task){
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    const project = new Project(projects[projectIndex].title);
+    project.index = projectIndex;
+    project.addTask(task);
+    projects[projectIndex] = project;
+    localStorage.setItem("projects",JSON.stringify(projects));
+
+  }
+}
+export const projects = Storage.getSavedProjects();
