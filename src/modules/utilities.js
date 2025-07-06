@@ -1,4 +1,4 @@
-import { projects } from "./storage.js";
+import { projects,Storage } from "./storage.js";
 import { Project } from "../models/project.js";
 import { editTaskDialog,userNameDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";
@@ -40,12 +40,11 @@ function createHashSignSvg(color) {
 }
 
 export const createAndApppendProject = (title) => {
-  projects.push(new Project(title));
-  projects.at(-1).index = projects.length - 1;
+  Storage.saveNewProject(title);
   renderProjects();
 };
 export const addTask = ({ projectIndex, task }) => {
-  projects[projectIndex].addTask(task);
+  Storage.addNewTask(projectIndex,task);
 };
 
 export const renderProjects = () => {
