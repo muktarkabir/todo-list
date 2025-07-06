@@ -63,4 +63,4 @@ export class Storage {
 
   }
 }
-export const projects = Storage.getSavedProjects();
+export const projects =()=> Storage.getSavedProjects();
