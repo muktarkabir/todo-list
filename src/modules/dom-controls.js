@@ -89,7 +89,7 @@ export const domStuff = (() => {
         task: newTask,
       });
       mainContent.replaceChildren(
-        viewProject(projects[Number.parseInt(selectedProject)])
+        viewProject(projects()[Number.parseInt(selectedProject)])
       );
       addTaskDialog.close();
       addTaskDialog.querySelector("form").reset();
@@ -98,14 +98,14 @@ export const domStuff = (() => {
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
       mainContent.replaceChildren(
-        viewProject(projects[Number.parseInt(e.target.dataset.index)])
+        viewProject(projects()[Number.parseInt(e.target.dataset.index)])
       );
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
       console.log(e.target.parentElement);
       mainContent.replaceChildren(
         viewProject(
-          projects[Number.parseInt(e.target.parentElement.dataset.index)]
+          projects()[Number.parseInt(e.target.parentElement.dataset.index)]
         )
       );
     }
@@ -127,7 +127,7 @@ export const domStuff = (() => {
 
   const addProjectsToDropdown = () => {
     addTaskProjectDropdown.innerHTML = "";
-    projects.forEach((project) => {
+    projects().forEach((project) => {
       addTaskProjectDropdown.add(new Option(project.title, project.index));
     });
   };

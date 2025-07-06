@@ -49,8 +49,8 @@ export const addTask = ({ projectIndex, task }) => {
 
 export const renderProjects = () => {
   domStuff.clearProjects();
-  domStuff.updateNumberOfProjects(projects.length);
-  projects.forEach((project, index) => {
+  domStuff.updateNumberOfProjects(projects().length);
+  projects().forEach((project, index) => {
     const renderedProject = createProjectCard({
       titleText: project.title,
       color: standoutColors[index],
@@ -64,18 +64,16 @@ export const addUserName = () => {
   userNameDialog.showModal();
   let userNameInput = userNameDialog.querySelector("input#user-name");
   const addUserNameButton = userNameDialog.querySelector("button.add-username");
-  addUserNameButton.addEventListener("click", (e) => {
-    console.log("clickde");
+  addUserNameButton.addEventListener("click", () => {
     if (userNameInput.value) {
       localStorage.setItem("userName",userNameInput.value.trim());
-      console.log(localStorage.getItem("userName"));  
       domStuff.setUserName(localStorage.getItem("userName"));  
     }
   });
 };
 
 export const showEditTaskDialog = (project, taskIndex) => {
-  let task = projects[project.index].allTasks[taskIndex];
+  let task = projects()[project.index].allTasks[taskIndex];
   let title = task.title;
   let description = task.description;
   let dueDate = task.dueDate;
