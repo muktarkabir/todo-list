@@ -2,8 +2,10 @@ import { taskTile } from "./task-tile.js";
 import { createElement, showEditTaskDialog } from "./utilities.js";
 import "../styles/main-content.css";
 import { editTaskDialog } from "./dialogs.js";
+import { ProjectWrapper } from "../models/project.js";
 
-export const viewProject = (project) => {
+export const viewProject = (projectFromJson) => {
+  let project = new ProjectWrapper({title:projectFromJson.title,index:projectFromJson.index,tasks:projectFromJson.tasks});
   const container = createElement({ tagName: "div", className: "project-div" });
   const addTaskDiv = createElement({
     tagName: "div",
