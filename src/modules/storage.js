@@ -22,10 +22,7 @@ export class Storage {
 
   static addNewTask(projectIndex,task){
     const projects = JSON.parse(localStorage.getItem("projects"));
-    const project = new Project(projects[projectIndex].title);
-    project.index = projectIndex;
-    project.addTask(task);
-    projects[projectIndex] = project;
+    projects[projectIndex].tasks.push(task);
     localStorage.setItem("projects",JSON.stringify(projects));
   }
   static toggleDone(projectIndex,taskIndex){
