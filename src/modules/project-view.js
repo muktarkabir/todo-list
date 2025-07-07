@@ -60,6 +60,7 @@ export const viewProject = (projectFromJson) => {
         e.target.parentElement.parentElement.parentElement.dataset.index;
       if (e.target.classList.contains("delete")) {
         project.deleteTask(taskIndex);
+        Storage.deleteTask(project.index,taskIndex);
         updateVisuals();
       } else if (e.target.classList.contains("edit")) {
         showEditTaskDialog(project.index, taskIndex);
