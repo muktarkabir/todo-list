@@ -1,3 +1,5 @@
+import { TaskWrapper } from "./task";
+
 export class Project {
   constructor(title) {
     this.title = title;
@@ -44,8 +46,8 @@ export class Project {
     this.tasks.push(task);
   }
 
-  addMultipleTasks(...tasks) {
-    this.tasks.push(...tasks);
+  addMultipleTasks([...tasks]) {
+    tasks.forEach((task)=>this.addTask(task));
   }
 
   deleteTask(taskIndex) {
@@ -70,12 +72,4 @@ export class Project {
   toString() {
     return `Project name:${this.title}, Tasks:[${this.tasks}]`;
   }
-}
-
-export class ProjectWrapper extends Project{
-  constructor({title,index,tasks}){
-    super(title);
-    this.index = index;
-    this.tasks = tasks;
-  };
 }

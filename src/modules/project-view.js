@@ -2,10 +2,19 @@ import { taskTile } from "./task-tile.js";
 import { createElement, showEditTaskDialog } from "./utilities.js";
 import "../styles/main-content.css";
 import { editTaskDialog } from "./dialogs.js";
-import { ProjectWrapper } from "../models/project.js";
+import { ProjectWrapper,Project } from "../models/project.js";
+import { Task } from "../models/task.js";
+import { Storage } from "./storage.js";
 
 export const viewProject = (projectFromJson) => {
-  let project = new ProjectWrapper({title:projectFromJson.title,index:projectFromJson.index,tasks:projectFromJson.tasks});
+  const project = new Project(projectFromJson.title);
+  project.index = projectFromJson.index;
+  const convertedTasks = [];
+  projectFromJson.tasks.forEach((task) => {
+    convertedTasks.push(new Task({title: task.title,description: task.description,dueDate: new Date(task.dueDate),priority: task.priority,isDone: task.isDone,dateAdded: new Date(task.dateAdded),}));
+  });
+  project.addMultipleTasks(convertedTasks);
+  
   const container = createElement({ tagName: "div", className: "project-div" });
   const addTaskDiv = createElement({
     tagName: "div",
@@ -47,6 +56,7 @@ export const viewProject = (projectFromJson) => {
     if (e.target instanceof HTMLInputElement) {
       let taskIndex = e.target.parentElement.parentElement.dataset.index;
       project.allTasks[taskIndex].toggleDone();
+      Storage.toggleDone(project.index, taskIndex);
       updateVisuals();
     } else if (e.target instanceof SVGElement) {
       let taskIndex =
@@ -57,13 +67,14 @@ export const viewProject = (projectFromJson) => {
       } else if (e.target.classList.contains("edit")) {
         showEditTaskDialog(project, taskIndex);
         editTaskDialog
-        .querySelector(".edit-task")
-        .addEventListener("click", () => {
-              let title = editTaskDialog.querySelector("#title").value;
-              let description = editTaskDialog.querySelector("#description").value;
-              let dueDate = editTaskDialog.querySelector("#due-date").value;
-              let priority = editTaskDialog.querySelector("select#priority");
-            if (title && description && dueDate) {           
+          .querySelector(".edit-task")
+          .addEventListener("click", () => {
+            let title = editTaskDialog.querySelector("#title").value;
+            let description =
+              editTaskDialog.querySelector("#description").value;
+            let dueDate = editTaskDialog.querySelector("#due-date").value;
+            let priority = editTaskDialog.querySelector("select#priority");
+            if (title && description && dueDate) {
               project.editTask({
                 taskIndex,
                 newTitle: title.trim(),
