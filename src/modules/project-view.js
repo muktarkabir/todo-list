@@ -2,7 +2,7 @@ import { taskTile } from "./task-tile.js";
 import { createElement, showEditTaskDialog } from "./utilities.js";
 import "../styles/main-content.css";
 import { editTaskDialog } from "./dialogs.js";
-import { ProjectWrapper,Project } from "../models/project.js";
+import { Project } from "../models/project.js";
 import { Task } from "../models/task.js";
 import { Storage } from "./storage.js";
 
@@ -16,10 +16,7 @@ export const viewProject = (projectFromJson) => {
   project.addMultipleTasks(convertedTasks);
   
   const container = createElement({ tagName: "div", className: "project-div" });
-  const addTaskDiv = createElement({
-    tagName: "div",
-    className: "add-task-div",
-  });
+  const addTaskDiv = createElement({tagName: "div",className:"add-task-div"});
   addTaskDiv.innerHTML = "<button>Add Task</button>";
   const heading = createElement({ tagName: "h1" });
   const filters = createElement({ tagName: "div", className: "filters" });
@@ -65,7 +62,7 @@ export const viewProject = (projectFromJson) => {
         project.deleteTask(taskIndex);
         updateVisuals();
       } else if (e.target.classList.contains("edit")) {
-        showEditTaskDialog(project, taskIndex);
+        showEditTaskDialog(project.index, taskIndex);
         editTaskDialog
           .querySelector(".edit-task")
           .addEventListener("click", () => {
@@ -82,6 +79,10 @@ export const viewProject = (projectFromJson) => {
                 newDueDate: new Date(dueDate),
                 newPriority: priority.options[priority.selectedIndex].value,
               });
+              Storage.editTask({projectIndex:project.index,taskIndex,newTitle: title.trim(),
+                newDescription: description.trim(),
+                newDueDate: new Date(dueDate),
+                newPriority: priority.options[priority.selectedIndex].value});
               updateVisuals();
             }
           });

@@ -72,11 +72,11 @@ export const addUserName = () => {
   });
 };
 
-export const showEditTaskDialog = (project, taskIndex) => {
-  let task = projects()[project.index].allTasks[taskIndex];
+export const showEditTaskDialog = (projectIndex, taskIndex) => {
+  let task = projects()[projectIndex].tasks[taskIndex];
   let title = task.title;
   let description = task.description;
-  let dueDate = task.dueDate;
+  let dueDate = new Date(task.dueDate);
   let priority = task.priority;
   editTaskDialog.innerHTML = `<form action="#" method="dialog">
               <div>
