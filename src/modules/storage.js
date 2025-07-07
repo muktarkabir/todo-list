@@ -34,5 +34,13 @@ export class Storage {
     projects[projectIndex].tasks[taskIndex].dateCompleted = new Date();
     localStorage.setItem("projects",JSON.stringify(projects));
   }
+  static editTask({projectIndex,taskIndex,newTitle,newDueDate,newDescription,newPriority}){
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    projects[projectIndex].tasks[taskIndex].title = newTitle.trim();
+    projects[projectIndex].tasks[taskIndex].dueDate = new Date(newDueDate);
+    projects[projectIndex].tasks[taskIndex].description = newDescription;
+    projects[projectIndex].tasks[taskIndex].priority = newPriority;
+    localStorage.setItem("projects",JSON.stringify(projects));
+  }
 }
 export const projects =()=> Storage.getSavedProjects();
