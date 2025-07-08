@@ -51,6 +51,7 @@ export const renderProjects = () => {
   domStuff.clearProjects();
   domStuff.updateNumberOfProjects(projects().length);
   projects().forEach((project, index) => {
+    if (index == 0) return;
     const renderedProject = createProjectCard({
       titleText: project.title,
       color: standoutColors[index],
