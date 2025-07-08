@@ -3,6 +3,7 @@ import { createAndApppendProject, addTask } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
 import { addProjectDialog, addTaskDialog } from "./dialogs.js";
+import { projectsPage } from "./projects-page.js";
 
 export class DomManipulations {
   constructor() {
@@ -22,6 +23,7 @@ export const domStuff = (() => {
   const projectsContainer = sidebar.querySelector(".projects");
   const main = document.querySelector("main");
   const mainContent = main.querySelector("#content");
+  const projectsPageTile = document.querySelector(".heading");
   const addProjectOpenButton = document.querySelector(".heading p");
   const addProjectForm = addProjectDialog.querySelector("form");
   const newProjectName = addProjectDialog.querySelector("input");
@@ -43,6 +45,9 @@ export const domStuff = (() => {
   const inboxCard = featuresContainer.querySelector(".inbox");
 
   inboxCard.addEventListener("click",()=> mainContent.replaceChildren(viewProject(projects()[0])));
+  projectsPageTile.addEventListener("click",()=>{
+    mainContent.replaceChildren(projectsPage())
+  })
 
   addProjectOpenButton.addEventListener("click", () => {
     addProjectDialog.showModal();
@@ -105,7 +110,6 @@ export const domStuff = (() => {
       );
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
-      console.log(e.target.parentElement);
       mainContent.replaceChildren(
         viewProject(
           projects()[Number.parseInt(e.target.parentElement.dataset.index)]

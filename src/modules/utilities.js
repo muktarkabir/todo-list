@@ -1,5 +1,4 @@
 import { projects,Storage } from "./storage.js";
-import { Project } from "../models/project.js";
 import { editTaskDialog,userNameDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";
 
@@ -7,13 +6,11 @@ export function createProjectCard({ titleText, color, index }) {
   const card = createElement({ tagName: "div", className: "project" });
   card.dataset.index = index;
   const iconContainer = createElement({ tagName: "div" });
-
   const svgIcon = createHashSignSvg(color);
   const title = createElement({ tagName: "p" });
   title.textContent = titleText;
   iconContainer.append(svgIcon);
   card.append(svgIcon, title);
-
   return card;
 }
 
