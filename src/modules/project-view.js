@@ -3,18 +3,10 @@ import { createElement, showEditTaskDialog } from "./utilities.js";
 import "../styles/main-content.css";
 import { editTaskDialog } from "./dialogs.js";
 import { Project } from "../models/project.js";
-import { Task } from "../models/task.js";
 import { Storage } from "./storage.js";
 
 export const viewProject = (projectFromJson) => {
-  const project = new Project(projectFromJson.title);
-  project.index = projectFromJson.index;
-  const convertedTasks = [];
-  projectFromJson.tasks.forEach((task) => {
-    convertedTasks.push(new Task({title: task.title,description: task.description,dueDate: new Date(task.dueDate),priority: task.priority,isDone: task.isDone,dateAdded: new Date(task.dateAdded),}));
-  });
-  project.addMultipleTasks(convertedTasks);
-  
+  const project = Project.fromJson(projectFromJson);
   const container = createElement({ tagName: "div", className: "project-div" });
   const addTaskDiv = createElement({tagName: "div",className:"add-task-div"});
   addTaskDiv.innerHTML = "<button>Add Task</button>";
@@ -25,9 +17,7 @@ export const viewProject = (projectFromJson) => {
   heading.textContent = project.title;
   filters.querySelector("button.all").classList.add("active-pill");
   addTaskDiv.querySelector("button").addEventListener("click", () => {
-    document.querySelector(
-      "dialog.task select#project"
-    ).innerHTML = `<option value=${project.index}>${project.title}</option>`;
+    document.querySelector("dialog.task select#project").innerHTML = `<option value=${project.index}>${project.title}</option>`;
     document.querySelector("dialog.task").showModal();
   });
   filters.addEventListener("click", (e) => {

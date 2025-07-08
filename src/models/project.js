@@ -1,4 +1,4 @@
-import { TaskWrapper } from "./task";
+import { Task } from "./task.js";
 
 export class Project {
   constructor(title) {
@@ -47,7 +47,7 @@ export class Project {
   }
 
   addMultipleTasks([...tasks]) {
-    tasks.forEach((task)=>this.addTask(task));
+    tasks.forEach((task) => this.addTask(task));
   }
 
   deleteTask(taskIndex) {
@@ -71,5 +71,26 @@ export class Project {
 
   toString() {
     return `Project name:${this.title}, Tasks:[${this.tasks}]`;
+  }
+
+  static fromJson(projectFromJson) {
+   const {title,index,tasks} = projectFromJson;
+    const project = new Project(title);
+    project.index = index;
+    const convertedTasks = [];
+    tasks.forEach((task) => {
+      convertedTasks.push(
+        new Task({
+          title: task.title,
+          description: task.description,
+          dueDate: new Date(task.dueDate),
+          priority: task.priority,
+          isDone: task.isDone,
+          dateAdded: new Date(task.dateAdded),
+        })
+      );
+    });
+    project.addMultipleTasks(convertedTasks);
+    return project;
   }
 }

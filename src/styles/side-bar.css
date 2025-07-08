@@ -20,7 +20,19 @@ aside {
       cursor: pointer;
     }
     & i {
-      color: var(--divider);
+      color: var(--text-medium);
+      font-size: 12px;
+    }
+    & .close-button{
+      margin-left: auto;
+      cursor: pointer;
+      padding: 2px;
+      height: fit-content;
+      border-radius: 4px;
+
+      & :hover{
+        background-color: var(--divider);
+      }
     }
   }
 
