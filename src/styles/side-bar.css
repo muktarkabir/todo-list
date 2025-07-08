@@ -97,12 +97,13 @@ aside {
     border-radius: 8px;
   }
 
-  .heading {
+  .heading { 
     display: grid;
     grid-template-columns: 3fr 2fr 1fr;
     grid-template-rows: 40px;
     gap: 0.4rem;
     align-items: center;
+    padding: 4px;
     div {
       aspect-ratio: 1;
       display: grid;
@@ -135,3 +136,12 @@ aside {
   }
 }
 
+.heading:hover{
+  background-color: color-mix(
+    in srgb,
+    var(--secondary) 20%,
+    transparent 80%
+  );
+  border-radius: 8px;
+  cursor: pointer;
+}

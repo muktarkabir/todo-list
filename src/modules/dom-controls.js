@@ -2,7 +2,7 @@ import { projects } from "./storage.js";
 import { createAndApppendProject, addTask } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
-import { addProjectDialog, addTaskDialog, userNameDialog } from "./dialogs.js";
+import { addProjectDialog, addTaskDialog } from "./dialogs.js";
 
 export class DomManipulations {
   constructor() {
@@ -40,6 +40,9 @@ export const domStuff = (() => {
   const addTaskConfirmButton = addTaskDialog.querySelector(".add-task");
 
   const addTaskButton = featuresContainer.querySelector(".add-task");
+  const inboxCard = featuresContainer.querySelector(".inbox");
+
+  inboxCard.addEventListener("click",()=> mainContent.replaceChildren(viewProject(projects()[0])));
 
   addProjectOpenButton.addEventListener("click", () => {
     addProjectDialog.showModal();
@@ -131,9 +134,8 @@ export const domStuff = (() => {
       addTaskProjectDropdown.add(new Option(project.title, project.index));
     });
   };
-  const setUserName = (name)=>{
+  const setUserName = ()=>{
   userName.textContent = `${localStorage.getItem("userName")}`;
-
   }
 
   return {
