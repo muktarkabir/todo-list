@@ -87,6 +87,7 @@ export class Project {
           priority: task.priority,
           isDone: task.isDone,
           dateAdded: new Date(task.dateAdded),
+          dateCompleted: new Date(task.dateCompleted)
         })
       );
     });
