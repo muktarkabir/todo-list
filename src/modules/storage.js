@@ -49,6 +49,12 @@ export class Storage {
     projects[projectIndex].tasks.splice(taskIndex, 1);
     localStorage.setItem("projects", JSON.stringify(projects));
   }
+  static deleteProject(projectIndex){
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    projects.splice(projectIndex,1);
+    localStorage.setItem("projects", JSON.stringify(projects));
+
+  }
 }
 if (!localStorage.getItem("projects")) {
   localStorage.setItem("projects", JSON.stringify([]));
