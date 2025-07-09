@@ -104,11 +104,12 @@ To run this project locally with Webpack:
 
 ## 🌈 Customization Ideas (Future implementations)
 
-* Add task due dates or categories
-* Sync with a backend or Firebase
+* Sync with a backend like Firebase
 * Drag-and-drop task reordering
 * 🌗 Switch between **Light** and **Dark** themes
 * 📱 Mobile-friendly and accessible UI
+* Moving tasks across projects
+* Adding toast notifications for improved user experience
   
   
 
