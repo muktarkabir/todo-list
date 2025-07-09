@@ -15,10 +15,18 @@ hr{
 .project-tile{
     display: flex;
     gap: 8px;
-    padding: .4rem;
+    padding: .6rem;
     margin: .4rem;
+    border-radius: 8px;
 }
 .project-tile:hover{
     background-color: var(--divider);
-    border-radius: 8px;
+    & button{
+        opacity: 1;
+    }
+}
+button{
+    margin-left: auto;
+    opacity: 0;
+    cursor: pointer;
 }

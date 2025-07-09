@@ -44,7 +44,7 @@ export const domStuff = (() => {
   const addTaskButton = featuresContainer.querySelector(".add-task");
   const inboxCard = featuresContainer.querySelector(".inbox");
 
-  inboxCard.addEventListener("click",()=> mainContent.replaceChildren(viewProject(projects()[0])));
+  inboxCard.addEventListener("click",()=> changeMainPageContent(viewProject(projects()[0])));
   projectsPageTile.addEventListener("click",()=>{
     mainContent.replaceChildren(projectsPage())
   })
@@ -96,25 +96,20 @@ export const domStuff = (() => {
         projectIndex: Number.parseInt(selectedProject),
         task: newTask,
       });
-      mainContent.replaceChildren(
-        viewProject(projects()[Number.parseInt(selectedProject)])
-      );
+      changeMainPageContent(viewProject(projects()[Number.parseInt(selectedProject)]));
       addTaskDialog.close();
       addTaskDialog.querySelector("form").reset();
     }
   });
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
-      mainContent.replaceChildren(
-        viewProject(projects()[Number.parseInt(e.target.dataset.index)])
-      );
+      changeMainPageContent(viewProject(projects()[Number.parseInt(e.target.dataset.index)]));
+  
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
-      mainContent.replaceChildren(
-        viewProject(
-          projects()[Number.parseInt(e.target.parentElement.dataset.index)]
-        )
-      );
+      changeMainPageContent(viewProject(
+        projects()[Number.parseInt(e.target.parentElement.dataset.index)]
+      ));
     }
   });
 
@@ -141,12 +136,16 @@ export const domStuff = (() => {
   const setUserName = ()=>{
   userName.textContent = `${localStorage.getItem("userName")}`;
   }
+  const changeMainPageContent = (pageToView)=>{
+    mainContent.replaceChildren(pageToView)
+  }
 
   return {
     apppendProject,
     clearProjects,
     updateNumberOfProjects,
     addProjectsToDropdown,
-    setUserName
+    setUserName,
+    changeMainPageContent
   };
 })();
