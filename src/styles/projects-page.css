@@ -1,0 +1,24 @@
+@import "../global-styles.css";
+
+.head{
+    margin-bottom: 2rem;
+}
+.sub{
+    margin-bottom: .5rem;
+    position: relative;
+}
+
+hr{
+    background-color: var(--divider);
+}
+
+.project-tile{
+    display: flex;
+    gap: 8px;
+    padding: .4rem;
+    margin: .4rem;
+}
+.project-tile:hover{
+    background-color: var(--divider);
+    border-radius: 8px;
+}

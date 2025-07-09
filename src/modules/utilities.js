@@ -111,7 +111,7 @@ export const showEditTaskDialog = (projectIndex, taskIndex) => {
 
 
 
-const standoutColors = [
+export const standoutColors = [
   "#FF5733", // bright red-orange
   "#33C3FF", // vivid sky blue
   "#FFC300", // strong yellow
