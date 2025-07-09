@@ -1,9 +1,5 @@
 import { projects, Storage } from "./storage.js";
-import {
-  createElement,
-  createProjectCard,
-  standoutColors,
-} from "./utilities.js";
+import {createElement,createProjectCard,standoutColors,} from "./utilities.js";
 import { Project } from "../models/project.js";
 import { taskTile } from "./task-tile.js";
 

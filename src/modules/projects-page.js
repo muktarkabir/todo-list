@@ -1,9 +1,4 @@
-import {
-  createElement,
-  createProjectCard,
-  renderProjectsInSideBar,
-  standoutColors,
-} from "./utilities.js";
+import {createElement,createProjectCard,renderProjectsInSideBar,standoutColors} from "./utilities.js";
 import { projects, Storage } from "./storage.js";
 import "../styles/projects-page.css";
 import { domStuff } from "./dom-controls.js";
