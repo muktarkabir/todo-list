@@ -1,15 +1,20 @@
-import { projects,Storage } from "./storage.js";
-import { editTaskDialog,userNameDialog } from "./dialogs.js";
+import { projects, Storage } from "./storage.js";
+import { editTaskDialog, userNameDialog } from "./dialogs.js";
 import { domStuff } from "./dom-controls.js";
 
-export function createProjectCard({ titleText, color, index,withDeleteButton }) {
+export function createProjectCard({
+  titleText,
+  color,
+  index,
+  withDeleteButton,
+}) {
   const card = createElement({ tagName: "div", className: "project" });
   card.dataset.index = index;
   const iconContainer = createElement({ tagName: "div" });
   const svgIcon = createHashSignSvg(color);
   const title = createElement({ tagName: "p" });
-  const deleteButton = createElement({tagName:"button"});
-  deleteButton.innerHTML = `<svg width="22px" height="22px" class="delete" viewBox="0 0 1024 1024" fill="red" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M32 241.6c-11.2 0-20-8.8-20-20s8.8-20 20-20l940 1.6c11.2 0 20 8.8 20 20s-8.8 20-20 20L32 241.6zM186.4 282.4c0-11.2 8.8-20 20-20s20 8.8 20 20v688.8l585.6-6.4V289.6c0-11.2 8.8-20 20-20s20 8.8 20 20v716.8l-666.4 7.2V282.4z" fill=""></path><path d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z" fill=""></path></g></svg>`;
+  const deleteButton = createElement({ tagName: "button" });
+  deleteButton.innerHTML = `<svg width="22px" height="22px" class="delete" data-index=${index} viewBox="0 0 1024 1024" fill="red" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M32 241.6c-11.2 0-20-8.8-20-20s8.8-20 20-20l940 1.6c11.2 0 20 8.8 20 20s-8.8 20-20 20L32 241.6zM186.4 282.4c0-11.2 8.8-20 20-20s20 8.8 20 20v688.8l585.6-6.4V289.6c0-11.2 8.8-20 20-20s20 8.8 20 20v716.8l-666.4 7.2V282.4z" fill=""></path><path d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z" fill=""></path></g></svg>`;
 
   title.textContent = titleText;
   iconContainer.append(svgIcon);
@@ -42,13 +47,13 @@ function createHashSignSvg(color) {
 
 export const createAndApppendProject = (title) => {
   Storage.saveNewProject(title);
-  renderProjects();
+  renderProjectsInSideBar();
 };
 export const addTask = ({ projectIndex, task }) => {
-  Storage.addNewTask(projectIndex,task);
+  Storage.addNewTask(projectIndex, task);
 };
 
-export const renderProjects = () => {
+export const renderProjectsInSideBar = () => {
   domStuff.clearProjects();
   domStuff.updateNumberOfProjects(projects().length);
   projects().forEach((project, index) => {
@@ -68,8 +73,8 @@ export const addUserName = () => {
   const addUserNameButton = userNameDialog.querySelector("button.add-username");
   addUserNameButton.addEventListener("click", () => {
     if (userNameInput.value) {
-      localStorage.setItem("userName",userNameInput.value.trim());
-      domStuff.setUserName(localStorage.getItem("userName"));  
+      localStorage.setItem("userName", userNameInput.value.trim());
+      domStuff.setUserName(localStorage.getItem("userName"));
     }
   });
 };
@@ -89,7 +94,9 @@ export const showEditTaskDialog = (projectIndex, taskIndex) => {
                 <label for="description">Description</label><br />
                 <textarea name="task-description" id="description" required rows="10" cols="30" maxlength="150">${description}</textarea>
                 <label for="due-date">Date</label>
-                <input type="date" name="due-date" id="due-date" value='${dueDate.toISOString().substr(0, 10)}' required/>
+                <input type="date" name="due-date" id="due-date" value='${dueDate
+                  .toISOString()
+                  .substr(0, 10)}' required/>
                 <label for="priority">Priority</label>
                 <select name="priority" id="priority">
                 <option value="low">Low</option>
@@ -104,16 +111,19 @@ export const showEditTaskDialog = (projectIndex, taskIndex) => {
               </div>
             </form>`;
 
-  editTaskDialog.querySelector("#priority").querySelectorAll("option").forEach((option)=>{
-    if (option.value == priority){
-      option.selected = true;
-    }
-  });
-  editTaskDialog.querySelector(".cancel").addEventListener("click",()=> editTaskDialog.close());
-  editTaskDialog.showModal();         
+  editTaskDialog
+    .querySelector("#priority")
+    .querySelectorAll("option")
+    .forEach((option) => {
+      if (option.value == priority) {
+        option.selected = true;
+      }
+    });
+  editTaskDialog
+    .querySelector(".cancel")
+    .addEventListener("click", () => editTaskDialog.close());
+  editTaskDialog.showModal();
 };
-
-
 
 export const standoutColors = [
   "#FF5733", // bright red-orange
