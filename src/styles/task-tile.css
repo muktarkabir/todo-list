@@ -47,3 +47,7 @@
 .edit:hover {
   background-color: rgb(223, 223, 223) !important;
 }
+
+.task-tile.completed{
+  min-height: 2rem;
+}
