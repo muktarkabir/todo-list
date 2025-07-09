@@ -68,7 +68,7 @@ To run this project locally with Webpack:
 1. **Clone the repo:**
 
    ```bash
-   git clone https://github.com/your-username/todo-list-app.git
+   git clone https://github.com/muktarkabir/todo-list-app.git
    ```
 
 2. **Navigate into the project directory:**
@@ -86,7 +86,7 @@ To run this project locally with Webpack:
 4. **Start the development server:**
 
    ```bash
-   npm run start
+   npm run dev
    ```
 
    This will launch the app in your default browser with hot reload enabled.
