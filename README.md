@@ -122,4 +122,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Your Name** – [@muktarkabir](https://github.com/muktarkabir)
+**Mukhtar Kabir** – [@muktarkabir](https://github.com/muktarkabir)
