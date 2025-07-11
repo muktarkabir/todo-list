@@ -5,6 +5,8 @@ import { viewProject } from "./project-view.js";
 import { addProjectDialog, addTaskDialog } from "./dialogs.js";
 import { projectsPage } from "./projects-page.js";
 import { completedTasksPage } from "./completed-tasks-page.js";
+import { searchPage } from "./search-page.js";
+import { todayPage } from "./today-page.js";
 
 export class DomManipulations {
   constructor() {
@@ -45,12 +47,16 @@ export const domStuff = (() => {
   const addTaskButton = featuresContainer.querySelector(".add-task");
   const inboxCard = featuresContainer.querySelector(".inbox");
   const completedProjectsCard = featuresContainer.querySelector(".completed");
+  const searchCard = featuresContainer.querySelector(".search");
+  const todayCard = featuresContainer.querySelector(".today");
   
   inboxCard.addEventListener("click",()=> changeMainPageContent(viewProject(projects()[0])));
   projectsPageTile.addEventListener("click",()=>{
     mainContent.replaceChildren(projectsPage())
   })
-  completedProjectsCard.addEventListener("click",()=> changeMainPageContent(completedTasksPage()))
+  completedProjectsCard.addEventListener("click",()=> changeMainPageContent(completedTasksPage()));
+  searchCard.addEventListener("click",()=> changeMainPageContent(searchPage()));
+  todayCard.addEventListener("click",()=> changeMainPageContent(todayPage()));
 
   addProjectOpenButton.addEventListener("click", () => {
     addProjectDialog.showModal();
