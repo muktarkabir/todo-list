@@ -144,7 +144,6 @@ export const domStuff = (() => {
   }
   const setUpInitialPage = ()=>{
     changeMainPageContent(viewProject(projects()[0]));
-
   }
 
   return {
