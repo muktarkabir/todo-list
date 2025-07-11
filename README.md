@@ -89,7 +89,7 @@ To run this project locally with Webpack:
    npm run dev
    ```
 
-   This will launch the app in your default browser with hot reload enabled.
+   Launch by opening your browser at `localhost:8080`.
 
 
 ---
