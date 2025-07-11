@@ -119,7 +119,7 @@ export const domStuff = (() => {
   const apppendProject = (projectCard) => {
     projectsContainer.append(projectCard);
   };
-
+  
   const clearProjects = () => {
     projectsContainer.innerHTML = "";
   };
@@ -129,7 +129,7 @@ export const domStuff = (() => {
       ".heading span"
     ).textContent = `used: ${newNumber}/10`;
   };
-
+  
   const addProjectsToDropdown = () => {
     addTaskProjectDropdown.innerHTML = "";
     projects().forEach((project) => {
@@ -137,10 +137,14 @@ export const domStuff = (() => {
     });
   };
   const setUserName = ()=>{
-  userName.textContent = `${localStorage.getItem("userName")}`;
+    userName.textContent = `${localStorage.getItem("userName")}`;
   }
   const changeMainPageContent = (pageToView)=>{
     mainContent.replaceChildren(pageToView)
+  }
+  const setUpInitialPage = ()=>{
+    changeMainPageContent(viewProject(projects()[0]));
+
   }
 
   return {
@@ -149,6 +153,7 @@ export const domStuff = (() => {
     updateNumberOfProjects,
     addProjectsToDropdown,
     setUserName,
-    changeMainPageContent
+    changeMainPageContent,
+    setUpInitialPage
   };
 })();
