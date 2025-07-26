@@ -68,3 +68,16 @@ header{
   height: 100%;
 }
 
+.anchor{
+  border: 1px solid var(--divider);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 6px;
+  padding: .5rem .6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.anchor:hover{
+  background-color: var(--divider);
+}
