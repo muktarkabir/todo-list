@@ -7,6 +7,7 @@ import { projectsPage } from "./projects-page.js";
 import { completedTasksPage } from "./completed-tasks-page.js";
 import { searchPage } from "./search-page.js";
 import { todayPage } from "./today-page.js";
+import { dropDownMenu } from "@muktarkabir/dropdown-menu";
 
 export class DomManipulations {
   constructor() {
@@ -49,14 +50,27 @@ export const domStuff = (() => {
   const completedProjectsCard = featuresContainer.querySelector(".completed");
   const searchCard = featuresContainer.querySelector(".search");
   const todayCard = featuresContainer.querySelector(".today");
-  
-  inboxCard.addEventListener("click",()=> changeMainPageContent(viewProject(projects()[0])));
-  projectsPageTile.addEventListener("click",()=>{
-    mainContent.replaceChildren(projectsPage())
-  })
-  completedProjectsCard.addEventListener("click",()=> changeMainPageContent(completedTasksPage()));
-  searchCard.addEventListener("click",()=> changeMainPageContent(searchPage()));
-  todayCard.addEventListener("click",()=> changeMainPageContent(todayPage()));
+  const settingsDropdownAnchor = sidebar.querySelector(".anchor");
+  console.log(settingsDropdownAnchor);
+
+  dropDownMenu({
+    anchor: settingsDropdownAnchor,
+    items: ["Change Username", "Delete all Projects", "Toggle Darkmode"],
+  });
+
+  inboxCard.addEventListener("click", () =>
+    changeMainPageContent(viewProject(projects()[0]))
+  );
+  projectsPageTile.addEventListener("click", () => {
+    mainContent.replaceChildren(projectsPage());
+  });
+  completedProjectsCard.addEventListener("click", () =>
+    changeMainPageContent(completedTasksPage())
+  );
+  searchCard.addEventListener("click", () =>
+    changeMainPageContent(searchPage())
+  );
+  todayCard.addEventListener("click", () => changeMainPageContent(todayPage()));
 
   addProjectOpenButton.addEventListener("click", () => {
     addProjectDialog.showModal();
@@ -105,27 +119,32 @@ export const domStuff = (() => {
         projectIndex: Number.parseInt(selectedProject),
         task: newTask,
       });
-      changeMainPageContent(viewProject(projects()[Number.parseInt(selectedProject)]));
+      changeMainPageContent(
+        viewProject(projects()[Number.parseInt(selectedProject)])
+      );
       addTaskDialog.close();
       addTaskDialog.querySelector("form").reset();
     }
   });
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.matches("div.project")) {
-      changeMainPageContent(viewProject(projects()[Number.parseInt(e.target.dataset.index)]));
-  
+      changeMainPageContent(
+        viewProject(projects()[Number.parseInt(e.target.dataset.index)])
+      );
     }
     if (e.target.matches("p") || e.target.matches("svg")) {
-      changeMainPageContent(viewProject(
-        projects()[Number.parseInt(e.target.parentElement.dataset.index)]
-      ));
+      changeMainPageContent(
+        viewProject(
+          projects()[Number.parseInt(e.target.parentElement.dataset.index)]
+        )
+      );
     }
   });
 
   const apppendProject = (projectCard) => {
     projectsContainer.append(projectCard);
   };
-  
+
   const clearProjects = () => {
     projectsContainer.innerHTML = "";
   };
@@ -135,22 +154,22 @@ export const domStuff = (() => {
       ".heading span"
     ).textContent = `used: ${newNumber}/10`;
   };
-  
+
   const addProjectsToDropdown = () => {
     addTaskProjectDropdown.innerHTML = "";
     projects().forEach((project) => {
       addTaskProjectDropdown.add(new Option(project.title, project.index));
     });
   };
-  const setUserName = ()=>{
+  const setUserName = () => {
     userName.textContent = `${localStorage.getItem("userName")}`;
-  }
-  const changeMainPageContent = (pageToView)=>{
-    mainContent.replaceChildren(pageToView)
-  }
-  const setUpInitialPage = ()=>{
+  };
+  const changeMainPageContent = (pageToView) => {
+    mainContent.replaceChildren(pageToView);
+  };
+  const setUpInitialPage = () => {
     changeMainPageContent(viewProject(projects()[0]));
-  }
+  };
 
   return {
     apppendProject,
@@ -159,6 +178,6 @@ export const domStuff = (() => {
     addProjectsToDropdown,
     setUserName,
     changeMainPageContent,
-    setUpInitialPage
+    setUpInitialPage,
   };
 })();
