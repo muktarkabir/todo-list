@@ -1,10 +1,8 @@
 import { Project } from "../models/project.js";
 import { domStuff } from "./dom-controls.js";
 
-
 export const noUserName = () => !localStorage.getItem("userName");
 domStuff.setUserName(localStorage.getItem("userName"));
-
 
 export class Storage {
   static saveNewProject(title) {
@@ -16,7 +14,7 @@ export class Storage {
   static getSavedProjects() {
     return JSON.parse(localStorage.getItem("projects"));
   }
-  
+
   static addNewTask(projectIndex, task) {
     const projects = JSON.parse(localStorage.getItem("projects"));
     projects[projectIndex].tasks.push(task);
@@ -49,11 +47,16 @@ export class Storage {
     projects[projectIndex].tasks.splice(taskIndex, 1);
     localStorage.setItem("projects", JSON.stringify(projects));
   }
-  static deleteProject(projectIndex){
+  static deleteProject(projectIndex) {
     const projects = JSON.parse(localStorage.getItem("projects"));
-    projects.splice(projectIndex,1);
+    projects.splice(projectIndex, 1);
     localStorage.setItem("projects", JSON.stringify(projects));
-
+  }
+  static clearProjects() {
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    for (let i = projects.length; i > 0; i--) {
+      if (i !== 0) this.deleteProject(i);
+    }
   }
 }
 if (!localStorage.getItem("projects")) {

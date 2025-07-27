@@ -1,4 +1,4 @@
-import { projects } from "./storage.js";
+import { projects,Storage } from "./storage.js";
 import { createAndApppendProject, addTask, addUserName } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
@@ -59,15 +59,22 @@ export const domStuff = (() => {
   });
   settingsDropDownMenu.addClickListenerToMenuItem({
     itemIndex: 0,
-    action: () => {
-      addUserName();
-    },
+    action: () => addUserName(),
   });
   settingsDropDownMenu.addClickListenerToMenuItem({
     itemIndex: 2,
     action: () => {
       let theme = document.querySelector(":root").dataset.theme;
-      theme !== 'dark' ? document.querySelector(":root").dataset.theme = "dark" : document.querySelector(":root").dataset.theme = "light"; 
+      theme !== "dark"
+        ? (document.querySelector(":root").dataset.theme = "dark")
+        : (document.querySelector(":root").dataset.theme = "light");
+    },
+  });
+  settingsDropDownMenu.addClickListenerToMenuItem({
+    itemIndex: 1,
+    action: () => {
+      Storage.clearProjects();
+      location.reload();
     },
   });
 
