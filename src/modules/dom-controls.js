@@ -1,5 +1,5 @@
 import { projects } from "./storage.js";
-import { createAndApppendProject, addTask } from "./utilities.js";
+import { createAndApppendProject, addTask, addUserName } from "./utilities.js";
 import { Task } from "../models/task.js";
 import { viewProject } from "./project-view.js";
 import { addProjectDialog, addTaskDialog } from "./dialogs.js";
@@ -53,9 +53,22 @@ export const domStuff = (() => {
   const settingsDropdownAnchor = sidebar.querySelector(".anchor");
   console.log(settingsDropdownAnchor);
 
-  dropDownMenu({
+  const settingsDropDownMenu = dropDownMenu({
     anchor: settingsDropdownAnchor,
-    items: ["Change Username", "Delete all Projects", "Toggle Darkmode"],
+    items: ["change username", "delete all projects", "darkmode"],
+  });
+  settingsDropDownMenu.addClickListenerToMenuItem({
+    itemIndex: 0,
+    action: () => {
+      addUserName();
+    },
+  });
+  settingsDropDownMenu.addClickListenerToMenuItem({
+    itemIndex: 2,
+    action: () => {
+      let theme = document.querySelector(":root").dataset.theme;
+      theme !== 'dark' ? document.querySelector(":root").dataset.theme = "dark" : document.querySelector(":root").dataset.theme = "light"; 
+    },
   });
 
   inboxCard.addEventListener("click", () =>
