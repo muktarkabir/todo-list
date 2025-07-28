@@ -51,7 +51,6 @@ export const domStuff = (() => {
   const searchCard = featuresContainer.querySelector(".search");
   const todayCard = featuresContainer.querySelector(".today");
   const settingsDropdownAnchor = sidebar.querySelector(".anchor");
-  console.log(settingsDropdownAnchor);
 
   const settingsDropDownMenu = dropDownMenu({
     anchor: settingsDropdownAnchor,
@@ -81,7 +80,8 @@ export const domStuff = (() => {
   inboxCard.addEventListener("click", () =>
     changeMainPageContent(viewProject(projects()[0]))
   );
-  projectsPageTile.addEventListener("click", () => {
+  projectsPageTile.addEventListener("click", (e) => {
+    if (e.target == addProjectOpenButton) return;
     mainContent.replaceChildren(projectsPage());
   });
   completedProjectsCard.addEventListener("click", () =>
