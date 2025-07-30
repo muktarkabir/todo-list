@@ -7,7 +7,7 @@ import { projectsPage } from "./projects-page.js";
 import { completedTasksPage } from "./completed-tasks-page.js";
 import { searchPage } from "./search-page.js";
 import { todayPage } from "./today-page.js";
-import { dropDownMenu } from "@muktarkabir/dropdown-menu";
+import { anchorDropDownMenu } from "@muktarkabir/dropdown-menu";
 
 export class DomManipulations {
   constructor() {
@@ -52,7 +52,7 @@ export const domStuff = (() => {
   const todayCard = featuresContainer.querySelector(".today");
   const settingsDropdownAnchor = sidebar.querySelector(".anchor");
 
-  const settingsDropDownMenu = dropDownMenu({
+  const settingsDropDownMenu = anchorDropDownMenu({
     anchor: settingsDropdownAnchor,
     items: ["change username", "delete all projects", "darkmode"],
   });
